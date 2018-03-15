@@ -44,17 +44,15 @@
   function bad(input) {
   	 return (input.indexOf(0) !== -1 && input.indexOf(2) !== -1)     
   }
-  // input.every(isHalfBad);
 
-
-  console.log(bad([0, 2]))
+  // console.log(bad([0, 2]))
 
   function rotten(input) {
   	return input.every(function(num) {
   		return num == 0;
   	});
   }
-  console.log(rotten([0, 0]));
+  // console.log(rotten([0, 0]));
 
 
 
@@ -75,14 +73,14 @@
   	return input;
   }
 
-  if(pack.includes(0) || pack.includes(2)) {
-  	console.log(pack, packIndex, 'is bad')
-	} else if(pack.includes(0) && pack.includes(2)) {
-			console.log(pack, packIndex, 'is rotten');
-	} else {
-		console.log(pack, packIndex, 'is good');
-	}
-  })
+ //  if(pack.includes(0) || pack.includes(2)) {
+ //  	console.log(pack, packIndex, 'is bad')
+	// } else if(pack.includes(0) && pack.includes(2)) {
+	// 		console.log(pack, packIndex, 'is rotten');
+	// } else {
+	// 	console.log(pack, packIndex, 'is good');
+	// }
+  
   	
 
   // console.log(badApples(input));
