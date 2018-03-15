@@ -64,14 +64,10 @@
 
   function badApples(input) {
   	input.forEach(function(pack, packIndex)  {
-  		 
   		if(bad(pack)) {
-  			console.log(pack, packIndex, 'is bad')
-  			// pack.map(num => num + 2);
-        input[packIndex] = input[packIndex].map(num => num + 2);
+       			input[packIndex] = input[packIndex].map(num => num + 2);
   		} else {
   			if(rotten(pack)) 
-	  			// console.log(pack, packIndex, 'is rotten')
 	  			input.splice(input.indexOf(pack), 1);
   		}
   	});
@@ -80,13 +76,13 @@
   }
 
   if(pack.includes(0) || pack.includes(2)) {
-  			console.log(pack, packIndex, 'is bad')
-  		} else if(pack.includes(0) && pack.includes(2)) {
-  				console.log(pack, packIndex, 'is rotten');
-  		} else {
-  			console.log(pack, packIndex, 'is good');
-  		}
-  	})
+  	console.log(pack, packIndex, 'is bad')
+	} else if(pack.includes(0) && pack.includes(2)) {
+			console.log(pack, packIndex, 'is rotten');
+	} else {
+		console.log(pack, packIndex, 'is good');
+	}
+  })
   	
 
   // console.log(badApples(input));
