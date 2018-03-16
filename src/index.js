@@ -60,18 +60,18 @@
   // 	pack.map(num => num + 2);
   // }
 
-  // function badApples(input) {
-  // 	input.forEach(function(pack, packIndex)  {
-  // 		if(bad(pack)) {
-  //      			input[packIndex] = input[packIndex].map(num => num + 2);
-  // 		} else {
-  // 			if(rotten(pack)) 
-	 //  			input.splice(input.indexOf(pack), 1);
-  // 		}
-  // 	});
+  function badApples(input) {
+  	input.forEach(function(pack, packIndex)  {
+  		if(bad(pack)) {
+       			input[packIndex] = input[packIndex].map(num => num + 2);
+  		} else {
+  			if(rotten(pack)) 
+	  			input.splice(input.indexOf(pack), 1);
+  		}
+  	});
   	
-  // 	return input;
-  // }
+  	return input;
+  }
 
  //  if(pack.includes(0) || pack.includes(2)) {
  //  	console.log(pack, packIndex, 'is bad')
@@ -98,21 +98,21 @@
 
 // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
-// function createPhoneNumber(numbers) {
-//   const countryCode = `(${numbers.slice(0, 3).join('')}) `;
-//   const fhalf = numbers.slice(3, 6).join('');
-//   const shalf = `-${numbers.slice(6).join('')}`
-//   const phoneNumber = countryCode.concat(fhalf, shalf);
-//   return phoneNumber;
-// }
+function createPhoneNumber(numbers) {
+  const countryCode = `(${numbers.slice(0, 3).join('')}) `;
+  const fhalf = numbers.slice(3, 6).join('');
+  const shalf = `-${numbers.slice(6).join('')}`
+  const phoneNumber = countryCode.concat(fhalf, shalf);
+  return phoneNumber;
+}
 
 // console.log(createPhoneNumber(numbers));
 
 //                     // OR
 
-// function PhoneNumber(digit) { 
-//   return "("+digit.substr(0, 3)+")" + " " + digit.substr(3, 3) + "-" + digit.substr(6, 4);
-// }
+function PhoneNumber(digit) { 
+  return "("+digit.substr(0, 3)+")" + " " + digit.substr(3, 3) + "-" + digit.substr(6, 4);
+}
 
 // const digit = "1234567890";
 
@@ -153,15 +153,15 @@
 //   '***********'
 // ]
 
-// function towerBuilder(nFloors) {
-//   let tower = [], space, star;
-//   for (let i = 1; i <= nFloors; i++) {
-//     space = " ".repeat(nFloors -i);
-//     star = "*".repeat((2*i) - 1);
-//     tower.push(`${space}${star}${space}`);
-//   }
-//   return tower;
-// }
+function towerBuilder(nFloors) {
+  let tower = [], space, star;
+  for (let i = 1; i <= nFloors; i++) {
+    space = " ".repeat(nFloors -i);
+    star = "*".repeat((2*i) - 1);
+    tower.push(`${space}${star}${space}`);
+  }
+  return tower;
+}
 
 // console.log(towerBuilder(6));
 
@@ -209,82 +209,82 @@
 
 // -----------------------------------------
 
-// First calculation function i wrote 
+First calculation function i wrote 
 
-// function zero(op) { 
-//   if(op) {return op(0)}
-//     return 0;
-// }
+function zero(op) { 
+  if(op) {return op(0)}
+    return 0;
+}
 
-// function one(op) { 
-//   if(op) {return op(1)}
-//     return 1;
-// }
+function one(op) { 
+  if(op) {return op(1)}
+    return 1;
+}
 
-// function two(op) {
-//   if(op) {return op(2)}
-//     return 2;
-// }
+function two(op) {
+  if(op) {return op(2)}
+    return 2;
+}
 
-// function three(op) {
-//   if(op) {return op(3)}
-//     return 3;
-// }
+function three(op) {
+  if(op) {return op(3)}
+    return 3;
+}
 
-// function four(op) {
-//   if(op) {return op(4)}
-//     return 4;
-// }
+function four(op) {
+  if(op) {return op(4)}
+    return 4;
+}
 
-// function five(op) {
-//   if(op) {return op(5)}
-//     return 5;
-// }
+function five(op) {
+  if(op) {return op(5)}
+    return 5;
+}
 
-// function six(op) {
-//   if(op) {return op(6)}
-//     return 6;
-// }
+function six(op) {
+  if(op) {return op(6)}
+    return 6;
+}
 
-// function seven(op) {
-//   if(op) {return op(7)}
-//     return 7;
-// }
+function seven(op) {
+  if(op) {return op(7)}
+    return 7;
+}
 
-// function eight(op) { 
-//   if (op)
-//    return op(8)
-//   return 8;
-// }
+function eight(op) { 
+  if (op)
+   return op(8)
+  return 8;
+}
 
-// function nine(op) {
-//   if(op) {return op(9)}
-//     return 9;
-// }
+function nine(op) {
+  if(op) {return op(9)}
+    return 9;
+}
 
 // ========================================
 
 // Second calculation function I wrote 
 
-// var n = dig => op => op ? op(dig) : dig;
+var n = dig => op => op ? op(dig) : dig;
 
-// const zero = n(0);
-// const one = n(1);
-// const two = n(2);
-// const three = n(3);
-// const four = n(4);
-// const five = n(5);
-// const six = n(6);
-// const seven = n(7);
-// const eight = n(8);
-// const nine = n(9);
-// const ten = n(10);
-// const eleven = n(11);
+const zero = n(0);
+const one = n(1);
+const two = n(2);
+const three = n(3);
+const four = n(4);
+const five = n(5);
+const six = n(6);
+const seven = n(7);
+const eight = n(8);
+const nine = n(9);
+const ten = n(10);
+const eleven = n(11);
 
-// const plus = val1 => val2 => val2 + val1;
-// const minus = val1 => val2 => val2 - val1;
-// const times = val1 => val2 => val2 * val1;
-// const dividedBy = val1 => val2 => val2 / val1;
+const plus = val1 => val2 => val2 + val1;
+const minus = val1 => val2 => val2 - val1;
+const times = val1 => val2 => val2 * val1;
+const dividedBy = val1 => val2 => val2 / val1;
 
 // // --=========-------=============--------======
 
@@ -374,51 +374,51 @@
 //     .join(" ")
 // }
 
-// function orderWeight(strng) {
-//   return strng
-//     .split(" ")
-//     .map(function(v) {  
-//       return {
-//         val: v,
-//         key: v.split("").reduce(function(prev, curr) {
-//           return parseInt(prev) + parseInt(curr);
-//         }, 0)
-//       };
-//     })
-//     .sort(function(a, b) {
-//       return a.key == b.key 
-//         ? a.val.localeCompare(b.val)
-//         : (a.key - b.key);
-//     })
-//     .map(function(v) {
-//       return v.val;
-//     })
-//     .join(" ");
-// }
+function orderWeight(strng) {
+  return strng
+    .split(" ")
+    .map(function(v) {  
+      return {
+        val: v,
+        key: v.split("").reduce(function(prev, curr) {
+          return parseInt(prev) + parseInt(curr);
+        }, 0)
+      };
+    })
+    .sort(function(a, b) {
+      return a.key == b.key 
+        ? a.val.localeCompare(b.val)
+        : (a.key - b.key);
+    })
+    .map(function(v) {
+      return v.val;
+    })
+    .join(" ");
+}
 
-// function orderWeight(string) {
-//   return string.split(' ')
-//     .map((v) => {
-//       return {
-//         val: v,
-//         key: v.split("").reduce((prev, curr) => {
-//           return parseInt(prev) + parseInt(curr);
-//         }, 0)
-//       }
-//     })
-//     .sort((a, b) => {
-//       return a.key == b.key
-//           ? a.val.localeCompare(b.val)
-//           : (a.key > b.key);
-//     })
-//     .map((m) => {
-//       return m.val;
-//     });
-//     console.log(s);
-//     .sort((a, b) => {
-//       return a.key == b.key
-//     })
-// }
+function orderWeight(string) {
+  return string.split(' ')
+    .map((v) => {
+      return {
+        val: v,
+        key: v.split("").reduce((prev, curr) => {
+          return parseInt(prev) + parseInt(curr);
+        }, 0)
+      }
+    })
+    .sort((a, b) => {
+      return a.key == b.key
+          ? a.val.localeCompare(b.val)
+          : (a.key > b.key);
+    })
+    .map((m) => {
+      return m.val;
+    });
+    console.log(s);
+    .sort((a, b) => {
+      return a.key == b.key
+    })
+}
 
 // console.log(orderWeight(weight));
 
@@ -445,19 +445,19 @@
 
 // OR 
 
-// function getLengthOfMissingArray(arrayOfArrays) {
-//   let arrayOfLength =  arrayOfArrays.length > 0 ? 
-//     arrayOfArrays.sort((a, b) => { return a.length > b.length ? 1 : -1})
-//     .map((a) => { return a.length; }) : 0;
+function getLengthOfMissingArray(arrayOfArrays) {
+  let arrayOfLength =  arrayOfArrays.length > 0 ? 
+    arrayOfArrays.sort((a, b) => { return a.length > b.length ? 1 : -1})
+    .map((a) => { return a.length; }) : 0;
 
-//     for(let i = 0; i < arrayOfLength.length; i++) {
-//       let first = arrayOfLength[i];
-//       let diff = arrayOfLength[i + 1] - first;
-//       if(diff != 1) {
-//         return first + 1;
-//       }
-//     }
-// }
+    for(let i = 0; i < arrayOfLength.length; i++) {
+      let first = arrayOfLength[i];
+      let diff = arrayOfLength[i + 1] - first;
+      if(diff != 1) {
+        return first + 1;
+      }
+    }
+}
 
 // console.log(getLengthOfMissingArray( [ [1, 4, 3, 9, 0], [ 4, 5, 1, 5], [ 1, 3, 4], [ 5, 6, 7, 8, 5, 4, 2]]));
 
@@ -482,69 +482,70 @@
 // Attention: If the number has leading zeros the amount of digits should be considered.
 
 //   let match, zeros, number, retNum;
-// function incrementString (strng) {
-//   match = strng.match(/(\d+)$/);
-//   zeros = strng.match(/(0*)\d+?$/);
-//   if(match === null) {
-//     return strng+1;
-//   }
 
-//    number = Number(match[0]) + 1;
+function incrementString (strng) {
+  match = strng.match(/(\d+)$/);
+  zeros = strng.match(/(0*)\d+?$/);
+  if(match === null) {
+    return strng+1;
+  }
 
-//   if(zeros[1].length > 1) {
+   number = Number(match[0]) + 1;
 
-//     retNum = zeros[1] + number;   
-//   } else {
-//     retNum = number;
-//   }
+  if(zeros[1].length > 1) {
 
-//   return strng.replace(match[0], retNum);
-// }
+    retNum = zeros[1] + number;   
+  } else {
+    retNum = number;
+  }
+
+  return strng.replace(match[0], retNum);
+}
 
 // console.log(incrementString('foobar00999'));
 
-// function num_to_word(N) {
-//  let array = String(N).split('');
-//  let result = '';
-//  for(let i = 0; i < array.length; i++) {
-//    switch(array[i]) {
-//      case '0':
-//        result += " zero ";
-//        break;
-//      case '1':
-//        result += " one";
-//        break;
-//      case "2":
-//        result += " two";
-//        break;
-//      case '3':
-//        result += " three";
-//        break;
-//      case '4':
-//        result += " four";
-//        break;
-//      case '5':
-//        result += " five";
-//        break;
-//      case '6':
-//        result += " six";
-//        break;
-//      case '7':
-//        result += " seven";
-//        break;
-//      case '8':
-//        result += " eight";
-//        break;
-//      case '9':
-//        result += " nine";
-//        break;
-//      default:
-//        result += " unknown number";
-//        break;
-//    }
-//  }
-//  console.log( result );
-// }
+function num_to_word(N) {
+ let array = String(N).split('');
+ let result = '';
+ for(let i = 0; i < array.length; i++) {
+   switch(array[i]) {
+     case '0':
+       result += " zero ";
+       break;
+     case '1':
+       result += " one";
+       break;
+     case "2":
+       result += " two";
+       break;
+     case '3':
+       result += " three";
+       break;
+     case '4':
+       result += " four";
+       break;
+     case '5':
+       result += " five";
+       break;
+     case '6':
+       result += " six";
+       break;
+     case '7':
+       result += " seven";
+       break;
+     case '8':
+       result += " eight";
+       break;
+     case '9':
+       result += " nine";
+       break;
+     default:
+       result += " unknown number";
+       break;
+   }
+ }
+ console.log( result );
+}
 
 // num_to_word(234589250891);
 
@@ -552,19 +553,19 @@
 
 // SUM OF DIGITS
 
-// function sum_of_digits(A) {
-//  return A.map((v) => {
-//    return String(v);
-//  })
-//  .map((v) => {
-//    return v.split("").reduce((a, b) => {
-//      return Number(a) + Number(b);
-//    })
-//  })
-//  .reduce((a, b) => {
-//    return Number(a) + Number(b);
-//  })
-// }
+function sum_of_digits(A) {
+ return A.map((v) => {
+   return String(v);
+ })
+ .map((v) => {
+   return v.split("").reduce((a, b) => {
+     return Number(a) + Number(b);
+   })
+ })
+ .reduce((a, b) => {
+   return Number(a) + Number(b);
+ })
+}
 
 // console.log(sum_of_digits([10, 20, 3, 5, 6, 23]));
 
@@ -572,32 +573,32 @@
 
 // SORT THE ODD
 
-// function isOdd(n) {
-//   return n % 2 == 1;
-// }
+function isOdd(n) {
+  return n % 2 == 1;
+}
 
-// function sortArray(array) {
-//   let arr = array.slice();
-//   let originalArray = array.slice();
-//   let oddArray = [];
+function sortArray(array) {
+  let arr = array.slice();
+  let originalArray = array.slice();
+  let oddArray = [];
 
-//   for(let i = 0; i < arr.length; i++) {
-//     if(isOdd(arr[i])) {
-//       oddArray.push(arr[i]);
-//     }
-//   }
+  for(let i = 0; i < arr.length; i++) {
+    if(isOdd(arr[i])) {
+      oddArray.push(arr[i]);
+    }
+  }
 
-//   oddArray = oddArray.sort((a, b) => a > b ? 1 : -1);
+  oddArray = oddArray.sort((a, b) => a > b ? 1 : -1);
 
-//   for(let i = 0; i < originalArray.length; i++) {
-//     if(isOdd(originalArray[i])) {
-//       let temp = Number(oddArray.splice(0, 1));
-//       originalArray[i] = temp;
-//     }
-//   }
+  for(let i = 0; i < originalArray.length; i++) {
+    if(isOdd(originalArray[i])) {
+      let temp = Number(oddArray.splice(0, 1));
+      originalArray[i] = temp;
+    }
+  }
 
-//   return originalArray;
-// }
+  return originalArray;
+}
 
 
 // console.log(sortArray([5, 3, 2, 8, 1, 4]))
@@ -606,53 +607,53 @@
 
 // MAKE A FUNCTION THAT DOES ARITHMETIC
 
-// function arithmetic(a, b, operator){
-//   switch (operator) {
-//     case "add":
-//       return plus(a, b);
-//       break;
-//     case "subtract":
-//       return subtract(a,b);
-//       break;
-//     case "multiply":
-//       return multiply(a,b);
-//       break;
-//     case "divide":
-//       return divide(a, b);
-//       break;
-//   }
-// }
+function arithmetic(a, b, operator){
+  switch (operator) {
+    case "add":
+      return plus(a, b);
+      break;
+    case "subtract":
+      return subtract(a,b);
+      break;
+    case "multiply":
+      return multiply(a,b);
+      break;
+    case "divide":
+      return divide(a, b);
+      break;
+  }
+}
 
-// function plus(a, b) {
-//   return a + b;
-// }
+function plus(a, b) {
+  return a + b;
+}
 
-// function subtract(a, b) {
-//   return a - b;
-// }
+function subtract(a, b) {
+  return a - b;
+}
 
-// function multiply(a, b) {
-//   return a * b;
-// }
+function multiply(a, b) {
+  return a * b;
+}
 
-// function divide(a, b) {
-//   return a / b;
-// }
+function divide(a, b) {
+  return a / b;
+}
 
 // ===================================================
 
 // PRINTER ERROR
-// function printerError(s) {
-//   const denominator = s.length;
-//   const printerDefault = /[a-m]/g;
-//   let error = 0;
-//   for(c of s) {
-//     if(!(c.match(printerDefault))) {
-//       error++;
-//     }
-//   }
-//   return `${error}/${denominator}`;
-// }
+function printerError(s) {
+  const denominator = s.length;
+  const printerDefault = /[a-m]/g;
+  let error = 0;
+  for(c of s) {
+    if(!(c.match(printerDefault))) {
+      error++;
+    }
+  }
+  return `${error}/${denominator}`;
+}
 
 // const s = "aaabbbbhaijjjm";
 // const z = "aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmxyz"
@@ -664,25 +665,25 @@
 
 // COUNTING DUPLICATES
 
-// function duplicateCount(text) {
-//   let count = 0;
-//   let duplicates = [];
-//   if(text.length <= 1) {
-//     return count;
-//   }
-//   text = text.toLowerCase();
+function duplicateCount(text) {
+  let count = 0;
+  let duplicates = [];
+  if(text.length <= 1) {
+    return count;
+  }
+  text = text.toLowerCase();
 
-//   for(let i = 0; i < text.length; i++) {
-//     for(let j = 0; j < text.length; j++) {
-//       if(j !== i && text[j] === text[i] && duplicates.indexOf(text[j]) == -1) {
-//         duplicates.push(text[j]);
-//         count++;
-//       }
-//     }
-//   }
-//   console.log(duplicates);
-//   return count;
-// }
+  for(let i = 0; i < text.length; i++) {
+    for(let j = 0; j < text.length; j++) {
+      if(j !== i && text[j] === text[i] && duplicates.indexOf(text[j]) == -1) {
+        duplicates.push(text[j]);
+        count++;
+      }
+    }
+  }
+  console.log(duplicates);
+  return count;
+}
 
 // console.log(duplicateCount("abcdefghabcdabcABAB"));
 
@@ -691,22 +692,22 @@
 
 // PARTLIST 
 
-// function partlist(arr) {
-//   let oriArr = arr.slice();
-//   let newArr = [];
+function partlist(arr) {
+  let oriArr = arr.slice();
+  let newArr = [];
 
-//   for(let i = 0; i < arr.length; i++) {
-//     if(i == arr.length - 1) {
-//       return newArr;
-//     }
+  for(let i = 0; i < arr.length; i++) {
+    if(i == arr.length - 1) {
+      return newArr;
+    }
 
-//     let pivot = i;
-//     let j = 1;
-//     let array = [oriArr.slice(0, pivot+1), oriArr.slice(pivot+1, 1).concat(oriArr.slice(pivot+2))];
-//     newArr.push(array);
-//   }
-//   return newArr;
-// }
+    let pivot = i;
+    let j = 1;
+    let array = [oriArr.slice(0, pivot+1), oriArr.slice(pivot+1, 1).concat(oriArr.slice(pivot+2))];
+    newArr.push(array);
+  }
+  return newArr;
+}
 
 // console.log(partlist(["az", "toto", "picaro", "zone", "kiwi"]));
 
@@ -714,33 +715,33 @@
 
 // Multi-tap Keypad Text Entry on an Old Mobile Phone
 
-// function presses(phrase) {
-//   let count = 0;
-//   for(let i = 0; i < phrase.length; i++) {
-//     let letter = phrase[i].toUpperCase();
-//     for(let key of buttons) {
-//       if(key.alpha.indexOf(letter) >= 0) {
-//         let press =  key.alpha.indexOf(letter) + 1;
-//         count += press;
-//       }
-//     }
-//   }
+function presses(phrase) {
+  let count = 0;
+  for(let i = 0; i < phrase.length; i++) {
+    let letter = phrase[i].toUpperCase();
+    for(let key of buttons) {
+      if(key.alpha.indexOf(letter) >= 0) {
+        let press =  key.alpha.indexOf(letter) + 1;
+        count += press;
+      }
+    }
+  }
 
-//   return count;
-// }
+  return count;
+}
 
-// const buttons = [
-//   {num: 1, alpha: ["1"]},
-//   {num: 2, alpha: ["A", "B", "C", "2"]},
-//   {num: 3, alpha: ["D", "E", "F", "3"]},
-//   {num: 4, alpha: ["G", "H", "I", "4"]},
-//   {num: 5, alpha: ["J", "K", "L", "5"]},
-//   {num: 6, alpha: ["M", "N", "O", "6"]},
-//   {num: 7, alpha: ["P", "Q", "R", "S", "7"]},
-//   {num: 8, alpha: ["T", "U", "V", "8"]},
-//   {num: 9, alpha: ["W", "X", "Y", "Z", "9"]},
-//   {num: 0, alpha: [" ", "0"]}
-// ];
+const buttons = [
+  {num: 1, alpha: ["1"]},
+  {num: 2, alpha: ["A", "B", "C", "2"]},
+  {num: 3, alpha: ["D", "E", "F", "3"]},
+  {num: 4, alpha: ["G", "H", "I", "4"]},
+  {num: 5, alpha: ["J", "K", "L", "5"]},
+  {num: 6, alpha: ["M", "N", "O", "6"]},
+  {num: 7, alpha: ["P", "Q", "R", "S", "7"]},
+  {num: 8, alpha: ["T", "U", "V", "8"]},
+  {num: 9, alpha: ["W", "X", "Y", "Z", "9"]},
+  {num: 0, alpha: [" ", "0"]}
+];
 
 // console.log(presses("WHERE DO U WANT 2 MEET L8R"));
 
@@ -748,20 +749,21 @@
 
 // SNAIL
 
-snail = function(array) {
-  var result;
-  while (array.length) {
-    // Steal the first row.
+function snail(array) {
+  const result = [];
+  while(array.length) {
     result = (result ? result.concat(array.shift()) : array.shift());
-    // Steal the right items.
-    for (var i = 0; i < array.length; i++)
+
+    for(let i = 0; i < array.length; i++) 
       result.push(array[i].pop());
-    // Steal the bottom row.
-    result = result.concat((array.pop() || []).reverse());
-    // Steal the left items.
-    for (var i = array.length - 1; i >= 0; i--)
+    
+    result = result.push(array.pop().reverse());
+
+    for(let i = array.length -1; i >= 0; i--) {
       result.push(array[i].shift());
+    }
   }
+
   return result;
 }
 
