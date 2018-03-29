@@ -1,4 +1,4 @@
-// Codewar 1
+/*// Codewar 1
 // instructions 
 // Help a fruit packer sort out the bad apples.
 
@@ -209,7 +209,7 @@ function towerBuilder(nFloors) {
 
 // -----------------------------------------
 
-First calculation function i wrote 
+// First calculation function i wrote 
 
 function zero(op) { 
   if(op) {return op(0)}
@@ -770,3 +770,40 @@ function snail(array) {
 // let array = [[1,2,3], [8, 9, 4], [7, 6, 5]];
 let array = [[1,2,3, 1], [4, 5, 6, 4], [7, 8, 9, 7], [7, 8, 9, 7]];
 console.log(snail(array));
+*/
+
+// STRIP COMMENTS 
+// not solved
+function solution(input, markers){
+  let marker = markers.join("");
+  console.log(marker);
+  let express = `[${marker}](.+)?|${marker}`;
+  let re =  new RegExp(express, "gi");
+  let strippedInput = input.replace(re, "");
+  console.log(strippedInput.length);
+  return strippedInput;
+}
+
+// console.log(solution("apples, pears # and bananas\ngrapes\nbananas !apples", ["#", "!"]));
+
+
+function generateHashtag(str) {
+  if(str == null || str.length < 1) return false;
+
+    str = str.split(' ')
+    .filter(word => word != "")
+    .map(word => word[0].toUpperCase() + word.slice(1))
+    .join('');
+
+    let tag = '#' + str;
+    if(tag.length > 140) return false;
+    return tag;
+}
+
+console.log(generateHashtag('Hello  there thanks for trying my Kata'));
+
+let str = 'Hello    there  thanks  for trying my Kata';
+
+str = str.split(' ').filter(word => word !== "");
+
+// console.log(str);
