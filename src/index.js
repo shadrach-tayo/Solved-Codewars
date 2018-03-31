@@ -807,3 +807,23 @@ let str = 'Hello    there  thanks  for trying my Kata';
 str = str.split(' ').filter(word => word !== "");
 
 // console.log(str);
+
+// =============================================
+// humanReadable kata 
+
+function zeroPad(num) {
+  num = num + '';
+  if(num.length < 2) return '0'+ num;
+  return num;
+}
+
+function humanReadable(seconds) {
+  let secondsLeft = seconds;
+  let hours = zeroPad(Math.floor(seconds / 3600));
+  secondsLeft = secondsLeft % 3600;
+  let mins = zeroPad(Math.floor(secondsLeft / 60));
+  let secs  = zeroPad(secondsLeft % 60);
+  return `${hours.length < 2 ? '0'+ hours : hours}:${mins.length < 2 ? '0'+ mins : mins}:${secs.length < 2 ? '0'+ secs : secs}`;
+}
+
+// console.log(humanReadable(4362346));
