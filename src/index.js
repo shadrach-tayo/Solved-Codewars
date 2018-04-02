@@ -827,3 +827,25 @@ function humanReadable(seconds) {
 }
 
 // console.log(humanReadable(4362346));
+
+// ============================================================
+/*
+Math issuses
+  Math.floor
+  Math.round
+  Math.ceil 
+*/
+
+Math.round = function(number) {
+  if(number - ~~number >= 0.5) return 1 + ~~number;
+  return ~~number;
+};
+
+Math.ceil = function(number) {
+  return  1 + ~~number;
+};
+
+Math.floor = function(number) {
+  return ~~number;
+};
+
