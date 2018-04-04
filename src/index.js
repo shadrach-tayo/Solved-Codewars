@@ -800,11 +800,11 @@ function generateHashtag(str) {
     return tag;
 }
 
-console.log(generateHashtag('Hello  there thanks for trying my Kata'));
+// console.log(generateHashtag('Hello  there thanks for trying my Kata'));
 
-let str = 'Hello    there  thanks  for trying my Kata';
+// let str = 'Hello    there  thanks  for trying my Kata';
 
-str = str.split(' ').filter(word => word !== "");
+// str = str.split(' ').filter(word => word !== "");
 
 // console.log(str);
 
@@ -894,10 +894,26 @@ function isSolved(board) {
 
 }
 
-console.log(isSolved(
-  [
-    [0, 1, 1],
-    [2, 0, 2], 
-    [2, 1, 0]
-  ]
-));
+// console.log(isSolved(
+//   [
+//     [0, 1, 1],
+//     [2, 0, 2], 
+//     [2, 1, 0]
+//   ]
+// ));
+
+// =============================================================
+
+ // CONVERT STRING TO CAMELCASE 
+
+ function toCamelCase(str) {
+    // set matches to uppercase first
+    str = str.replace(/[-_](\w)/g, str => str.toUpperCase());
+      
+    // then replace dashes
+    str = str.replace(/([-_])/g, '');
+
+    return str;
+ }
+
+ console.log(toCamelCase('the-stealth-warrior'));
