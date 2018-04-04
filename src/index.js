@@ -842,10 +842,62 @@ Math.round = function(number) {
 };
 
 Math.ceil = function(number) {
-  return  1 + ~~number;
+  return (number - ~~number > 0) ? 1 + number : number;
 };
 
 Math.floor = function(number) {
   return ~~number;
 };
 
+// ============================================================
+// Tic-Tac-Toe checker 
+const board = [[0, 0, 2],
+               [0, 0, 0],
+               [1, 0, 1]]
+
+function isSolved(board) {
+
+  for(let i = 0; i <= 2; i++) {
+    
+    // check for vertically possible wins
+    if(board[0][i] === board[1][i] && board[0][i] === board[2][i] && board[0][i] !== 0) {
+      return board[0][i];
+    }
+
+    // check for horizontal wins
+    if(board[i][0] === board[i][1] && board[i][0] === board[i][2] && board[i][0] !== 0) {
+     return board[i][0];
+    }
+
+    // check for diagonal wins 
+    if(board[0][0] === board[1][1] && board[0][0] === board[2][2] && board[0][0] !== 0) {
+     return board[0][0];
+    }
+
+    // check for other diagonal
+    if(board[0][2] === board[1][1] && board[0][2] === board[2][0] && board[0][2] !== 0) {
+      return board[0][2];
+    }
+
+  }
+
+   // check for empty slots in the board;
+  for(let i = 0; i <= 2; i++) {
+    for(let j = 0; j <= 2; j++) {
+      if(board[i][j] === 0) {
+        return -1;
+      }
+    }
+  }
+
+  return 0;
+
+}
+
+console.log(isSolved(
+  [
+    [0, 1, 1],
+    [2, 0, 2], 
+    [2, 1, 0]
+  ]
+));
