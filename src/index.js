@@ -1,4 +1,4 @@
-/*// Codewar 1
+// Codewar 1
 // instructions 
 // Help a fruit packer sort out the bad apples.
 
@@ -41,17 +41,18 @@
   // 	return num.indexof(0) !== -1 || num.indexOf(2) !== -1;
   // }
 
-  // function bad(input) {
-  // 	 return (input.indexOf(0) !== -1 && input.indexOf(2) !== -1)     
-  // }
+  function bad(input) {
+  	 return (input.indexOf(0) !== -1 && input.indexOf(2) !== -1)     
+  }
 
-  // // console.log(bad([0, 2]))
+  // console.log(bad([0, 2]))
 
-  // function rotten(input) {
-  // 	return input.every(function(num) {
-  // 		return num == 0;
-  // 	});
-  // }
+  function rotten(input) {
+  	return input.every(function(num) {
+  		return num == 0;
+  	});
+  }
+  
   // console.log(rotten([0, 0]));
 
 
@@ -768,9 +769,9 @@ function snail(array) {
 }
 
 // let array = [[1,2,3], [8, 9, 4], [7, 6, 5]];
-let array = [[1,2,3, 1], [4, 5, 6, 4], [7, 8, 9, 7], [7, 8, 9, 7]];
-console.log(snail(array));
-*/
+// let array = [[1,2,3, 1], [4, 5, 6, 4], [7, 8, 9, 7], [7, 8, 9, 7]];
+// console.log(snail(array));
+
 
 // STRIP COMMENTS 
 // not solved
@@ -916,4 +917,4 @@ function isSolved(board) {
     return str;
  }
 
- console.log(toCamelCase('the-stealth-warrior'));
+ // console.log(toCamelCase('the-stealth-warrior'));
