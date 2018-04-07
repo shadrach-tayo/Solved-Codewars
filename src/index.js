@@ -212,56 +212,56 @@ function towerBuilder(nFloors) {
 
 // First calculation function i wrote 
 
-function zero(op) { 
-  if(op) {return op(0)}
-    return 0;
-}
+// function zero(op) { 
+//   if(op) {return op(0)}
+//     return 0;
+// }
 
-function one(op) { 
-  if(op) {return op(1)}
-    return 1;
-}
+// function one(op) { 
+//   if(op) {return op(1)}
+//     return 1;
+// }
 
-function two(op) {
-  if(op) {return op(2)}
-    return 2;
-}
+// function two(op) {
+//   if(op) {return op(2)}
+//     return 2;
+// }
 
-function three(op) {
-  if(op) {return op(3)}
-    return 3;
-}
+// function three(op) {
+//   if(op) {return op(3)}
+//     return 3;
+// }
 
-function four(op) {
-  if(op) {return op(4)}
-    return 4;
-}
+// function four(op) {
+//   if(op) {return op(4)}
+//     return 4;
+// }
 
-function five(op) {
-  if(op) {return op(5)}
-    return 5;
-}
+// function five(op) {
+//   if(op) {return op(5)}
+//     return 5;
+// }
 
-function six(op) {
-  if(op) {return op(6)}
-    return 6;
-}
+// function six(op) {
+//   if(op) {return op(6)}
+//     return 6;
+// }
 
-function seven(op) {
-  if(op) {return op(7)}
-    return 7;
-}
+// function seven(op) {
+//   if(op) {return op(7)}
+//     return 7;
+// }
 
-function eight(op) { 
-  if (op)
-   return op(8)
-  return 8;
-}
+// function eight(op) { 
+//   if (op)
+//    return op(8)
+//   return 8;
+// }
 
-function nine(op) {
-  if(op) {return op(9)}
-    return 9;
-}
+// function nine(op) {
+//   if(op) {return op(9)}
+//     return 9;
+// }
 
 // ========================================
 
@@ -360,22 +360,22 @@ const dividedBy = val1 => val2 => val2 / val1;
 
 // var weight = "57 63 199 38 93 21";
 
-// function orderWeight(string) {
-//   return string.split(' ')
-//     .map((v) => {
-//       return {
-//         val: v,
-//         key: v.split('').reduce((a, b) => {
-//           return parseInt(a) + parseInt(b);
-//         })
-//       }
-//     })
-//     .sort((a, b) => a.key == b.key ? a.val.localeCompare(b.val) : (a.key - b.key))
-//     .map((a) => a.val)
-//     .join(" ")
-// }
+function orderWeight(string) {
+  return string.split(' ')
+    .map((v) => {
+      return {
+        val: v,
+        key: v.split('').reduce((a, b) => {
+          return parseInt(a) + parseInt(b);
+        })
+      }
+    })
+    .sort((a, b) => a.key == b.key ? a.val.localeCompare(b.val) : (a.key - b.key))
+    .map((a) => a.val)
+    .join(" ")
+}
 
-function orderWeight(strng) {
+/*function orderWeight(strng) {
   return strng
     .split(" ")
     .map(function(v) {  
@@ -395,9 +395,9 @@ function orderWeight(strng) {
       return v.val;
     })
     .join(" ");
-}
+}*/
 
-function orderWeight(string) {
+/*function orderWeight(string) {
   return string.split(' ')
     .map((v) => {
       return {
@@ -414,12 +414,11 @@ function orderWeight(string) {
     })
     .map((m) => {
       return m.val;
-    });
-    console.log(s);
+    })
     .sort((a, b) => {
       return a.key == b.key
     })
-}
+}*/
 
 // console.log(orderWeight(weight));
 
@@ -607,7 +606,7 @@ function sortArray(array) {
 // ==============================================================
 
 // MAKE A FUNCTION THAT DOES ARITHMETIC
-
+/*
 function arithmetic(a, b, operator){
   switch (operator) {
     case "add":
@@ -640,10 +639,11 @@ function multiply(a, b) {
 function divide(a, b) {
   return a / b;
 }
-
+*/
 // ===================================================
 
 // PRINTER ERROR
+
 function printerError(s) {
   const denominator = s.length;
   const printerDefault = /[a-m]/g;
@@ -918,3 +918,27 @@ function isSolved(board) {
  }
 
  // console.log(toCamelCase('the-stealth-warrior'));
+
+
+ // simple fun #116: best match
+
+function bestMatch(ALAHLYGoals, zamalekGoals) {
+  let matchDiff = [];
+  for(let i = 0; i < ALAHLYGoals.length; i++) {
+    matchDiff.push({ 
+      i: ALAHLYGoals[i] - zamalekGoals[i],
+      key: zamalekGoals[i],
+      index: i
+    });
+  }
+  matchDiff.sort((a, b) => a.i - b.i);
+  let bestMatch = matchDiff[0];
+  matchDiff.forEach(match => {
+    if(!bestMatch) bestMatch = match;
+    if(match.i <= bestMatch.i && match.key > bestMatch.key) bestMatch = match; 
+    if(match.i === bestMatch.i && match.key === bestMatch.key && match.index < bestMatch.index) bestMatch = match;   
+  });
+  return bestMatch.index;
+}
+
+console.log(bestMatch([5,8,9,10,12,12,11,15,8,9,12,8,7,12,4,17,12,9],[3,2,0,4,6,6,5,6,2,4,8,3,1,10,0,8,10,1]));
