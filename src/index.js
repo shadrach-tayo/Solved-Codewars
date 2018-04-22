@@ -919,6 +919,7 @@ function isSolved(board) {
 
  // console.log(toCamelCase('the-stealth-warrior'));
 
+// ========================================================================================
 
  // simple fun #116: best match
 
@@ -941,4 +942,216 @@ function bestMatch(ALAHLYGoals, zamalekGoals) {
   return bestMatch.index;
 }
 
-console.log(bestMatch([5,8,9,10,12,12,11,15,8,9,12,8,7,12,4,17,12,9],[3,2,0,4,6,6,5,6,2,4,8,3,1,10,0,8,10,1]));
+// console.log(bestMatch([5,8,9,10,12,12,11,15,8,9,12,8,7,12,4,17,12,9],[3,2,0,4,6,6,5,6,2,4,8,3,1,10,0,8,10,1]));
+
+// =========================================================================================================================
+
+// Phone Directory
+
+function phones(strng, num) {
+  let arr = strng.split(/\n/g);
+  return arr.reduce((acc, curr, v, arr) => {
+    let exactPhoneRegExp = new RegExp(`${num}`, "g");
+    let nameRegExp = /\<(\s?\D+\s?\D{0,}\s?)\>/g;
+    let phoneRegExp = /\+?(\d{1,2}-\d{3}-\d{3}-\d{4}).?/g;
+    let retString = '';
+    let phoneArr = [];
+    let nameArr = [];
+    let addressArr = [];
+
+    for(let i = 0; i < arr.length; i++) {
+      let item = arr[i];
+      
+      if(item.match(nameRegExp) && item.match(exactPhoneRegExp)) {
+        let [name, number] = [item.match(nameRegExp)[0].replace(/[<?\>?]/g, "").trim(), item.match(exactPhoneRegExp)[0].replace(/\+?/, "").trim()];
+        nameArr.push(name);
+        phoneArr.push(number);
+        item = item.replace(name, "");
+        item = item.replace(number, "");
+        addressArr.push(item.replace(/[\+?*:,!$<>;/]+/g, "").trim());
+        // console.log(nameArr, phoneArr, addressArr);
+      }
+    }
+
+    if(!phoneArr.find(p => phoneRegExp.test(p))) return `Error => Not found: ${num}`;
+    if(phoneArr.length > 1) return `Error => Too many people: ${num}`;
+
+    retString += `Phone => ${phoneArr[0]}, `;
+    retString += `Name => ${nameArr[0]}, `;
+    retString += `Address => ${addressArr[0]}`.replace(/\_/g, "").replace(/\s{1,}/g, ' ');
+
+    return retString;
+  });
+}
+
+const dr = "/+1-541-754-3010 156 Alphand_St. <J Steeve>\n 133, Green, Rd. <E Kustur> NY-56423 ;+1-541-914-3010\n"
++ "+1-541-984-3012 <P Reed> /PO Box 530; Pollocksville, NC-28573\n :+1-321-512-2222 <Paul Dive> Sequoia Alley PQ-67209\n"
++ "+1-741-984-3090 <Peter Reedgrave> _Chicago\n :+1-921-333-2222 <Anna Stevens> Haramburu_Street AA-67209\n"
++ "+1-111-544-8973 <Peter Pan> LA\n +1-921-512-2222 <Wilfrid Stevens> Wild Street AA-67209\n"
++ "<Peter Gone> LA ?+1-121-544-8974 \n <R Steell> Quora Street AB-47209 +1-481-512-2222\n"
++ "<Arthur Clarke> San Antonio $+1-121-504-8974 TT-45120\n <Ray Chandler> Teliman Pk. !+1-681-512-2222! AB-47209,\n"
++ "<Sophia Loren> +1-421-674-8974 Bern TP-46017\n <Peter O'Brien> High Street +1-908-512-2222; CC-47209\n"
++ "<Anastasia> +48-421-674-8974 Via Quirinal Roma\n <P Salinger> Main Street, +1-098-512-2222, Denver\n"
++ "<C Powel> *+19-421-674-8974 Chateau des Fosses Strasbourg F-68000\n <Bernard Deltheil> +1-498-512-2222; Mount Av.  Eldorado\n"
++ "+1-099-500-8000 <Peter Crush> Labrador Bd.\n +1-931-512-4855 <William Saurin> Bison Street CQ-23071\n"
++ "<P Salinge> Main Street, +1-098-512-2222, Denve";
+
+  // dr.split(/\n/g).forEach(person => {
+  //   let phoneRegExp = /\+?(\d{1,2}-\d{3}-\d{3}-\d{4}).?/g;
+  //   let phone = person.match(phoneRegExp);
+  //   phone = phone[0].replace(/[!+;,.]/g, "").trim();
+  //   console.log(phones(dr, phone));
+  // });
+
+// console.log(phone(dr, "48-421-674-8974"))
+
+// let phoneDir = dr.split(/\n/g);
+
+//       // let exactPhoneRegExp = new RegExp(`${num}`, "g");
+//       let nameRegExp = /\<(.?\s?\w{0,}\s*?.?\w{0,}\s*?)|(\w{0,})\>/g;
+//       let exactPhoneRegExp = new RegExp(`${"1-121-504-8974"}`, "g");
+//       let phoneRegExp = /\+(\d{1,2}-\d{3}-\d{3}-\d{4}).?/g;
+//       let retString = '';
+//       let phoneArr = [];
+//       let nameArr = [];
+//       let addressArr = [];
+
+//       for(let i = 0; i < phoneDir.length; i++) {
+//         let item = phoneDir[i];
+//         if(item.match(nameRegExp) && item.match(exactPhoneRegExp)) {
+//           let [name, number] = [item.match(nameRegExp)[0].replace(/\<?\>?/g, "").trim(), item.match(exactPhoneRegExp)[0].replace(/\+?\s?/, "").trim()];
+//           nameArr.push(name);
+//           phoneArr.push(number);
+//           item = item.replace(name, "");
+//           item = item.replace(number, "");
+//           addressArr.push(item.replace(/\+?\<?\>?\s?\W/g, ""));
+//           console.log(nameArr, phoneArr, addressArr);
+          
+//         } 
+//       }
+
+// =========================================================================================================================
+
+// BASE CONVERSION ALGORITHM
+
+/*
+  In this kata you have to implement a base converter, which converts positive integers between arbitrary bases / alphabets. Here are some pre-defined alphabets:
+*/
+
+var Alphabet = {
+  BINARY:        '01',
+  OCTAL:         '01234567',
+  DECIMAL:       '0123456789',
+  HEXA_DECIMAL:  '0123456789abcdef',
+  ALPHA_LOWER:   'abcdefghijklmnopqrstuvwxyz',
+  ALPHA_UPPER:   'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+  ALPHA:         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+  ALPHA_NUMERIC: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+};
+
+const bin = Alphabet.BINARY;
+const oct = Alphabet.OCTAL;
+const dec = Alphabet.DECIMAL;
+const hex = Alphabet.HEXA_DECIMAL;
+const allow = Alphabet.ALPHA_LOWER;
+const allup = Alphabet.ALPHA_UPPER;
+const alpha = Alphabet.ALPHA;
+const alpha_num = Alphabet.ALPHA_NUMERIC;
+
+const toBin = convertToBase(2);
+const toOct = convertToBase(8);
+const toDec = toBase10;
+const toHex = convertToBase(16);
+const toAlpha = convertToBase(51);
+const toAllow = convertToBase(25);
+const toAllup = convertToBase(25);
+const toAlpha_num = convertToBase(61);
+
+function baseConverter(target) {
+   if(target == dec) return toDec;
+   let base = target.length;
+  return convertToBase(base);
+}
+
+
+function convertToBase(base) {
+  var convert = [];
+  return function convertTo(number) {
+    var num = Number(number);
+    convert.unshift(num % base);
+    num = Math.floor(num / base);
+    if(num <= 0) {
+      try { 
+        return convert;
+      } finally {
+        convert = [];
+      }
+    } 
+    return convertTo(num); 
+  }
+}
+
+// takes in an array of numbers to convert to DECIMAL;
+function toBase10(number, base) {
+  let convert = 0;
+  let num = number;
+  if(typeof num === 'string') {
+    num = num.split('');
+  }
+  if(num.length <= 0) return convert;
+  for(let i = num.length - 1; i >= 0; i--) {
+    convert += (Number(num.shift()) * Math.pow(base, i));
+  }
+  return convert + '';
+}
+
+
+function displayOutput(output, base) {
+  if(typeof output == "object") {
+    output = output.map(val => base[val]);
+  } else {
+    output = base[output];
+  }
+  return output.join('');
+}
+
+function getSourceInput(input, base) {
+  return input = input.split('')
+    .map(val => base.indexOf(val));
+}
+
+function convert(input, source, target) {
+  if(source == target) return input;
+  let toConvert = input;
+  let convertedInput;
+
+
+  let targetConverter = baseConverter(target); 
+
+  // Handle binary source
+  if(source == bin) {
+    toConvert = toDec(toConvert, 2);
+    if(target == dec) {
+      return toConvert;
+    } else {
+      convertedInput = targetConverter(toConvert);
+      return displayOutput(convertedInput, target);  
+    }
+  }
+
+  if(source == oct) {
+    toConvert = toDec(toConvert, 8);
+    if(target == dec) return toConvert;
+    convertedInput = targetConverter(toConvert);
+    return displayOutput(convertedInput, target);
+  }
+
+  // get inputs number to convert for any case type that doesn't match the above;
+  toConvert = getSourceInput(toConvert, source);
+  // if(target == dec) return toDec(toConvert, source.length);
+  toConvert = toDec(toConvert, source.length);
+  convertedInput = targetConverter(toConvert);
+  return displayOutput(convertedInput, target);
+}
+
+
