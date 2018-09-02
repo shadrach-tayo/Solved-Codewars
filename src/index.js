@@ -1,49 +1,6 @@
-// Codewar 1
-// instructions 
-// Help a fruit packer sort out the bad apples.
-
-// There are 7 varieties of apples, all packaged as pairs and stacked in a fruit box. Some of the apples are spoiled. The fruit packer will have to make sure the spoiled apples are either removed from the fruit box or replaced. Below is the breakdown:
-
-// Apple varieties are represented with numbers, 1 to 7
-
-// A fruit package is represented with a 2 element array [4,3]
-
-// A fruit package with one bad apple, or a bad package, is represented with [2,0] or [0,2]
-
-// A fruit package with two bad apples, or a rotten package, is represented with [0,0]
-
-// A fruit box is represented with: input below. Write a program to clear the fruit box off bad apples.
-
-// The INPUT will be a fruit box represented with a 2D array: [[1,3],[7,6],[7,2],[1,3],[0,2],[4,5],[0,3],[7,6]]
-
-// The OUTPUT should be the fruit box void of bad apples: [[1,3],[7,6],[7,2],[1,3],[2,3],[4,5],[7,6]]
-
-// Conditions to be met:
-
-// 1.A bad package should have the bad apple replaced if there is another bad package with a good apple to spare. Else, the bad package should be discarded.
-
-// 2.The order of the packages in the fruit box should be preserved. Repackaging happens from the top of the fruit box index = 0 to the bottom nth index. Also note how fruits in a package are ordered when repacking. Example shown in INPUT/OUPUT above.
-
-// 3.Rotten packages should be discarded.
-
-// 4.There can be packages with the same variety of apples, e.g [1,1], this is not a problem.
-
-// var input = [ [ 1, 3 ],
-//   [ 7, 6 ],
-//   [ 7, 2 ],
-//   [ 1, 3 ],
-//   [ 0, 2 ],
-//   [ 4, 5 ],
-//   [ 0, 0 ],
-//   [ 7, 6 ] ];
-
-  // function isHalfBad(num) {
-  // 	return num.indexof(0) !== -1 || num.indexOf(2) !== -1;
-  // }
-
-  function bad(input) {
-  	 return (input.indexOf(0) !== -1 && input.indexOf(2) !== -1)     
-  }
+function bad(input) {
+ return (input.indexOf(0) !== -1 && input.indexOf(2) !== -1)
+}
 
   // console.log(bad([0, 2]))
 
@@ -54,12 +11,6 @@
   }
   
   // console.log(rotten([0, 0]));
-
-
-
-  // function modify(pack) {
-  // 	pack.map(num => num + 2);
-  // }
 
   function badApples(input) {
   	input.forEach(function(pack, packIndex)  {
@@ -1155,4 +1106,174 @@ function convert(input, source, target) {
 }
 
 // ============================================================================================
+    // CLOSET AND SMALLEST 
+/*
+Input
 
+
+
+/*	algorithm for solution 
+	1. check for valid length
+	2. split string into array
+	3. map corresponding elements to extract details into {weigth: "sum of it's digits", index: num}
+	4. sort mapped output using their weights
+	5. check for bestMatch with respect to difference in their weights
+	6. form the output array with the bestMatch found
+	7. return output.
+	
+*/
+/*
+function closest(strng) {
+    var array = strng.split(' ');
+    var weight = array.map( e => {
+      return e.split('').reduce( (p,a) => Number(p)+Number(a) )
+    });
+    
+    var arr = weight.sort((a,b) => a - b)
+    var dif = arr[1]-arr[0];
+    var solution = [arr[0], arr[1]];
+    arr.forEach( (e,i) => {
+      if(e[i+1] - e < dif) {
+        dif = e[i+1] - e
+        solution = [e[i+1], e];
+        console.log(i)
+      }
+    })
+    console.log(dif)
+    console.log(solution)
+    return [[solution[0], array.indexOf(solution[0]), array[weight.indexOf(solution[0])]], [solution[1], array.indexOf(solution[1]), array[weight.indexOf(solution[1])]]]
+}
+
+var strng = "103 123 4444 99 2000"
+// console.log(closest(strng1));
+*/
+
+
+function closest(strng) {
+  if(strng.length > 0 && strng.length < 2) return [];
+  console.log(strng);
+  const strngArray = strng.split(' ');
+  let diff = -1;
+  let retArray = [];
+  let retArrayPrev, retArrayNext;
+  strng = strng.split(' ')
+  	.map((num, idx) => {
+  		return {
+  			weight: addString(num),
+  			index: idx,
+  			num: num
+  		}
+  	})
+  	.sort((a, b) => a.weight - b.weight)
+  console.log(strng);
+  for(let idx in strng) {
+  	idx = Number(idx);
+  	if(idx === strng.length -1) break;
+  	let prev = strng[idx];
+  	let next = strng[idx+1];
+  	console.log(prev, next);
+  	if(diff < 0) {
+  		diff = next.weight - prev.weight;
+  		retArrayPrev = prev;
+  		retArrayNext = next;
+  		retArray = [
+  			[prev.weight, prev.index, prev.num], 
+  			[next.weight, next.index, next.num]
+  		];
+  	} else {
+	  		let currDiff = next.weight - prev.weight;
+	  		console.log('current diff is:', currDiff);
+	  		if(currDiff < diff) {
+	  			console.log('lesser')
+	  			retArray = [
+	  				[prev.weight, prev.index, prev.num], 
+	  				[next.weight, next.index, next.num]
+	  			];
+	  			retArrayPrev = prev;
+	  			retArrayNext = next;
+  			} else if((currDiff === 0) || (currDiff === diff)) {
+	  			console.log('zero or lesser');
+	  			if((prev.index < retArrayPrev.index) || (next.index < retArrayNext.index)) {
+	  				retArray = [
+	  					[prev.weight, prev.index, prev.num],
+	  					[next.weight, next.index, next.num]
+	  				];
+	  				retArrayPrev = prev;
+	  				retArrayNext = next;
+	  				continue;
+	  			}
+	  		}	
+  		}
+		}
+  return retArray;
+}
+ 
+// Helper function to addup string of numbers
+function addString(strng) {
+	return strng.split('')
+	.reduce((a, b) => Number(a) + Number(b), 0);
+}
+
+
+// else if((currDiff === diff) && ( (prev.index < retArray[0][1]) || (next.index < retArray[1][1]) )) {
+// 	  			if(prev.weight < retArrayPrev.weight || next.weight < retArrayNext.weight){
+// 	  				retArray = [
+// 	  					[prev.weight, prev.index, prev.num], 
+// 	  					[next.weight, next.index, next.num]
+// 	  				];
+// 	  			}
+// 	  			console.log('equals, parse index')
+// 	  		}
+
+
+
+// Test for closet;
+const strng1 = "103 123 4444 99 2000";
+const strng2 = "80 71 62 53";
+const strng3 = "444 2000 445 544";
+const strng4 = "444 2000 445 644 2001 1002" //closest("444 2000 445 644 2001 1002") --> [[3, 4, 2001], [3, 5, 1002]]
+const strng5 = "239382 162 254765 182 485944 468751 49780 108 54"; // [[9, 1, 162], [9, 7, 108]]
+const strng6 = "54 239382 162 254765 182 485944 468751 49780 108";
+const strng7 = "239382 162 254765 182 485944 134 468751 62 49780 108 54"
+console.log(closest("315411 165 53195 87 318638 107 416122 121 375312 193 59"));
+
+
+===================================================================================================================
+/*
+Consider a "word" as any sequence of capital letters A-Z (not limited to just "dictionary words"). For any word with at least two different letters, there are other words composed of the same letters but in a different order (for instance, STATIONARILY/ANTIROYALIST, which happen to both be dictionary words; for our purposes "AAIILNORSTTY" is also a "word" composed of the same letters as these two).
+
+We can then assign a number to every word, based on where it falls in an alphabetically sorted list of all words made up of the same group of letters. One way to do this would be to generate the entire list of words and find the desired one, but this would be slow if the word is long.
+
+Given a word, return its number. Your function should be able to accept any word 25 letters or less in length (possibly with some letters repeated), and take no more than 500 milliseconds to run. To compare, when the solution code runs the 27 test cases in JS, it takes 101ms.
+
+For very large words, you'll run into number precision issues in JS (if the word's position is greater than 2^53). For the JS tests with large positions, there's some leeway (.000000001%). If you feel like you're getting it right for the smaller ranks, and only failing by rounding on the larger, submit a couple more times and see if it takes.
+
+Python, Java and Haskell have arbitrary integer precision, so you must be precise in those languages (unless someone corrects me).
+
+C# is using a long, which may not have the best precision, but the tests are locked so we can't change it.
+
+Sample words, with their rank:
+ABAB = 2
+AAAB = 1
+BAAA = 4
+QUESTION = 24572
+BOOKKEEPER = 10743
+
+function listPosition(word) {
+  //Return the anagram list position of the word
+  return 1;
+}
+
+---------TESTS--------------
+Test.describe('Anagram', function() {
+  var testValues = {'A' : 1, 'ABAB' : 2, 'AAAB' : 1, 'BAAA' : 4, 'QUESTION' : 24572, 'BOOKKEEPER' : 10743};
+  it ("Must return appropriate values for known inputs", function() {
+    for (var word in testValues) {
+      if (testValues.hasOwnProperty(word)) {
+        Test.assertEquals(listPosition(word), testValues[word], 'Incorrect list position for: ' + word);
+      }
+    }
+  });
+});
+
+*/
