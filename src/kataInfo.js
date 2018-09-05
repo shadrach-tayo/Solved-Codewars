@@ -19,6 +19,7 @@
   each handler will be subscribed at most once at any given moment of time. It can still be unsubscribed and then subscribed again
   Also see an example test fixture for suggested usage
 
+<<<<<<< HEAD
 // Es5 solution 
 function Event() {
   this.handlers = [];
@@ -39,7 +40,35 @@ function Event() {
     }
     throw(`Error: ${fn} has not been subscribed`);
   }
+||||||| merged common ancestors
+*/
 
+
+
+  function Event() {
+    this.handlers = [];
+
+    this.subscribe = (fn) => {
+      if(!~this.handlers.indexOf(fn)) {
+        if(typeof fn === "function") this.handlers.push(fn)
+        else throw(`Error: cannot susbscribe ${fn}: not a function`);
+      }
+      return this;
+    }
+=======
+
+// Es6 solution 
+class Event() {
+  constructor() {
+    this.subscribers = new Set();
+  }
+
+  subscribe(fn) {
+    this.subscribers.add(fn);
+  }
+>>>>>>> c0b76bad2418877b2ec49fb845046ff004251f7d
+
+<<<<<<< HEAD
   this.emit = (...args) => {
     if(this.handlers.length > 0) {
       this.handlers.forEach(handler => handler(...args));
@@ -47,12 +76,39 @@ function Event() {
     }
   }
 }
+||||||| merged common ancestors
+    this.unsubscribe = (fn) => {
+      if(this.handlers.includes(fn)) {
+        let fnIndex = this.handlers.indexOf(fn);
+        unsubscribedFn = this.handlers.splice(fnIndex, 1);
+        return this;
+      }
+      throw(`Error: ${fn} has not been subscribed`);
+    }
+=======
+  unsubscribe(fn) {
+    this.subscribers.delete(fn);
+  }
+>>>>>>> c0b76bad2418877b2ec49fb845046ff004251f7d
 
+<<<<<<< HEAD
 // Es6 solution 
 class Event() {
   constructor() {
     this.subscribers = new Set();
+||||||| merged common ancestors
+    this.emit = (...args) => {
+      if(this.handlers.length > 0) {
+        this.handlers.forEach(handler => handler(args));
+        return this;
+      }
+    }
+=======
+  emit(...args) {
+    this.subscribers.forEach(s => s(...args));
+>>>>>>> c0b76bad2418877b2ec49fb845046ff004251f7d
   }
+}
 
   subscribe(fn) {
     this.subscribers.add(fn);
@@ -106,7 +162,7 @@ class Event() {
 
 // ============================================================================================
 
-// ADVANCED EVENTS --> TO BE SOLVED 
+// ADVANCED EVENTS --> SOLVED 
 
 /*
 
@@ -171,6 +227,11 @@ class Event {
   }
 
 }
+
+// es5 implementation 
+// function Event() {
+//   this.handlers = [];
+// }
 
 var event = new Event();
 
