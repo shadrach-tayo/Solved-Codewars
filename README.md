@@ -4,9 +4,9 @@
 
 ## To get started
 - fork and clone the repository
-- enter index.js to view codewars
-- check kataInfo.js for information on any kata in index.js
-- [unsubmitted-kata.js](./Unsubmitted-kata.js) contains codewars kata yet to be completed or completed and yet to be submited
+- enter [index.js](./src/index.js) to view codewars
+- check [kataInfo.js](./src/kataInfo.js) for information on any kata in index.js
+- [unsubmitted-kata.js](./src/Unsubmitted-kata.js) contains codewars kata yet to be completed or completed and yet to be submited
 
 ### Todo:
 1. create a test folder to write test for each kata
