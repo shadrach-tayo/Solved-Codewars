@@ -19,37 +19,53 @@
   each handler will be subscribed at most once at any given moment of time. It can still be unsubscribed and then subscribed again
   Also see an example test fixture for suggested usage
 
-*/
+// Es5 solution 
+function Event() {
+  this.handlers = [];
 
+  this.subscribe = (fn) => {
+    if(!~this.handlers.indexOf(fn)) {
+      if(typeof fn === "function") this.handlers.push(fn)
+      else throw(`Error: cannot susbscribe ${fn}: not a function`);
+    }
+    return this;
+  }
 
-
-  function Event() {
-    this.handlers = [];
-
-    this.subscribe = (fn) => {
-      if(!~this.handlers.indexOf(fn)) {
-        if(typeof fn === "function") this.handlers.push(fn)
-        else throw(`Error: cannot susbscribe ${fn}: not a function`);
-      }
+  this.unsubscribe = (fn) => {
+    if(this.handlers.includes(fn)) {
+      let fnIndex = this.handlers.indexOf(fn);
+      unsubscribedFn = this.handlers.splice(fnIndex, 1);
       return this;
     }
+    throw(`Error: ${fn} has not been subscribed`);
+  }
 
-    this.unsubscribe = (fn) => {
-      if(this.handlers.includes(fn)) {
-        let fnIndex = this.handlers.indexOf(fn);
-        unsubscribedFn = this.handlers.splice(fnIndex, 1);
-        return this;
-      }
-      throw(`Error: ${fn} has not been subscribed`);
-    }
-
-    this.emit = (...args) => {
-      if(this.handlers.length > 0) {
-        this.handlers.forEach(handler => handler(args));
-        return this;
-      }
+  this.emit = (...args) => {
+    if(this.handlers.length > 0) {
+      this.handlers.forEach(handler => handler(...args));
+      return this;
     }
   }
+}
+
+// Es6 solution 
+class Event() {
+  constructor() {
+    this.subscribers = new Set();
+  }
+
+  subscribe(fn) {
+    this.subscribers.add(fn);
+  }
+
+  unsubscribe(fn) {
+    this.subscribers.delete(fn);
+  }
+
+  emit(...args) {
+    this.subscribers.forEach(s => s(...args));
+  }
+}
 
   var event = new Event();
 
@@ -59,6 +75,13 @@
 
   function mult(args) {
     console.log(args.reduce((init, arg) => init * arg, 1));
+  }
+
+  function f() {
+    f.calls = (f.calls || 0) + 1;
+    f.args = Array.prototype.slice.call(arguments);
+    console.log(f.calls);
+    console.log(f.args);
   }
 
   console.log(
@@ -72,8 +95,13 @@
       .subscribe(add)
       .emit(1, 3, 5, 6)
       .emit(1, 2)
+      .unsubscribe(add)
+      .unsubscribe(mult)
+      .subscribe(f)
+      .emit('2', 'foo', true)
   );
 
+*/
 
 
 // ============================================================================================
@@ -108,6 +136,7 @@
 
 */
 
+// Es6 implementation 
 class Event {
   constructor() {
     this.handlers = [];
@@ -115,27 +144,29 @@ class Event {
   }
 
   subscribe(...fns) {
-    fns.forEach(fn => {
-      if(typeof fn === 'function') {
-        this.handlers.push(fn);
+    console.log(this);
+    for(let i = 0; i < arguments.length; i++) {
+      if(typeof arguments[i] === 'function') {
+        this.handlers.push(arguments[i]);
       }
-    });
+    }
     return this;
   }
 
   unsubscribe(...fns) {
-    fns.forEach(fn => {
-      let fnIndex = this.handlers.lastIndexOf(fn);
+    console.log(arguments);
+    for(let i = 0; i < arguments.length; i++) {
+      let fnIndex = this.handlers.lastIndexOf(arguments[i]);
       if(fnIndex) this.handlers.splice(fnIndex, 1);
-      console.log(fnIndex);
-    });
+    }
     return this;
   }
 
   emit(...args) {
-    this.handlers.forEach(handler => {
-      handler.call(this, args);
-    });
+    console.log(args);
+    for(let i = 0; i < this.handlers.length; i++) {
+      this.handlers[i].call(this, args);
+    }
     return this;
   }
 
@@ -168,4 +199,7 @@ console.log(
     .subscribe(actOnce)
     .emit(1, 2, 3, 4)
     .unsubscribe(actOnce)
-); /* test passed */
+); 
+
+
+/* test passed */

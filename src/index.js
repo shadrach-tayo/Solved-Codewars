@@ -1277,3 +1277,98 @@ Test.describe('Anagram', function() {
 });
 
 */
+
+// =====================================================================
+// SIMPLE EVENTS 
+
+
+// Es5 solution 
+function Event() {
+  this.handlers = [];
+
+  this.subscribe = (fn) => {
+    if(!~this.handlers.indexOf(fn)) {
+      if(typeof fn === "function") this.handlers.push(fn)
+      else throw(`Error: cannot susbscribe ${fn}: not a function`);
+    }
+    return this;
+  }
+
+  this.unsubscribe = (fn) => {
+    if(this.handlers.includes(fn)) {
+      let fnIndex = this.handlers.indexOf(fn);
+      unsubscribedFn = this.handlers.splice(fnIndex, 1);
+      return this;
+    }
+    throw(`Error: ${fn} has not been subscribed`);
+  }
+
+  this.emit = (...args) => {
+    if(this.handlers.length > 0) {
+      this.handlers.forEach(handler => handler(...args));
+      return this;
+    }
+  }
+}
+
+// Es6 solution 
+class Event() {
+  constructor() {
+    this.subscribers = new Set();
+  }
+
+  subscribe(fn) {
+    this.subscribers.add(fn);
+  }
+
+  unsubscribe(fn) {
+    this.subscribers.delete(fn);
+  }
+
+  emit(...args) {
+    this.subscribers.forEach(s => s(...args));
+  }
+}
+
+
+
+// ============================================================================================
+
+// ADVANCED EVENTS --> SOLVED 
+
+
+// Es6 implementation 
+class Event {
+  constructor() {
+    this.handlers = [];
+
+  }
+
+  subscribe(...fns) {
+    console.log(this);
+    for(let i = 0; i < arguments.length; i++) {
+      if(typeof arguments[i] === 'function') {
+        this.handlers.push(arguments[i]);
+      }
+    }
+    return this;
+  }
+
+  unsubscribe(...fns) {
+    console.log(arguments);
+    for(let i = 0; i < arguments.length; i++) {
+      let fnIndex = this.handlers.lastIndexOf(arguments[i]);
+      if(fnIndex) this.handlers.splice(fnIndex, 1);
+    }
+    return this;
+  }
+
+  emit(...args) {
+    console.log(args);
+    for(let i = 0; i < this.handlers.length; i++) {
+      this.handlers[i].call(this, args);
+    }
+    return this;
+  }
+
+}
