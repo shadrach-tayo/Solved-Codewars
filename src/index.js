@@ -1,59 +1,56 @@
 function bad(input) {
- return (input.indexOf(0) !== -1 && input.indexOf(2) !== -1)
+  return input.indexOf(0) !== -1 && input.indexOf(2) !== -1;
 }
 
-  // console.log(bad([0, 2]))
+// console.log(bad([0, 2]))
 
-  function rotten(input) {
-  	return input.every(function(num) {
-  		return num == 0;
-  	});
-  }
-  
-  // console.log(rotten([0, 0]));
+function rotten(input) {
+  return input.every(function(num) {
+    return num == 0;
+  });
+}
 
-  function badApples(input) {
-  	input.forEach(function(pack, packIndex)  {
-  		if(bad(pack)) {
-       			input[packIndex] = input[packIndex].map(num => num + 2);
-  		} else {
-  			if(rotten(pack)) 
-	  			input.splice(input.indexOf(pack), 1);
-  		}
-  	});
-  	
-  	return input;
-  }
+// console.log(rotten([0, 0]));
 
- //  if(pack.includes(0) || pack.includes(2)) {
- //  	console.log(pack, packIndex, 'is bad')
-	// } else if(pack.includes(0) && pack.includes(2)) {
-	// 		console.log(pack, packIndex, 'is rotten');
-	// } else {
-	// 	console.log(pack, packIndex, 'is good');
-	// }
-  
-  	
+function badApples(input) {
+  input.forEach(function(pack, packIndex) {
+    if (bad(pack)) {
+      input[packIndex] = input[packIndex].map(num => num + 2);
+    } else {
+      if (rotten(pack)) input.splice(input.indexOf(pack), 1);
+    }
+  });
 
-  // console.log(badApples(input));
+  return input;
+}
+
+//  if(pack.includes(0) || pack.includes(2)) {
+//  	console.log(pack, packIndex, 'is bad')
+// } else if(pack.includes(0) && pack.includes(2)) {
+// 		console.log(pack, packIndex, 'is rotten');
+// } else {
+// 	console.log(pack, packIndex, 'is good');
+// }
+
+// console.log(badApples(input));
 
 // _________________________________________________________________________________________
 
-  // Codewar 2 
+// Codewar 2
 
 //   Write a function that accepts an array of 10 integers (between 0 and 9), that returns a string of those numbers in the form of a phone number.
 
 // Example:
 // createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]) // => returns "(123) 456-7890"
-// The returned format must be correct in order to complete this challenge. 
+// The returned format must be correct in order to complete this challenge.
 // Don't forget the space after the closing parentheses!
 
 // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
 function createPhoneNumber(numbers) {
-  const countryCode = `(${numbers.slice(0, 3).join('')}) `;
-  const fhalf = numbers.slice(3, 6).join('');
-  const shalf = `-${numbers.slice(6).join('')}`
+  const countryCode = `(${numbers.slice(0, 3).join("")}) `;
+  const fhalf = numbers.slice(3, 6).join("");
+  const shalf = `-${numbers.slice(6).join("")}`;
   const phoneNumber = countryCode.concat(fhalf, shalf);
   return phoneNumber;
 }
@@ -62,16 +59,23 @@ function createPhoneNumber(numbers) {
 
 //                     // OR
 
-function PhoneNumber(digit) { 
-  return "("+digit.substr(0, 3)+")" + " " + digit.substr(3, 3) + "-" + digit.substr(6, 4);
+function PhoneNumber(digit) {
+  return (
+    "(" +
+    digit.substr(0, 3) +
+    ")" +
+    " " +
+    digit.substr(3, 3) +
+    "-" +
+    digit.substr(6, 4)
+  );
 }
 
 // const digit = "1234567890";
 
 // console.log(PhoneNumber(digit));
 
-
-      // CODEWAR 3 - BUILDTOWER
+// CODEWAR 3 - BUILDTOWER
 // Build Tower
 // Build Tower by the following given argument:
 // number of floors (integer and always greater than 0).
@@ -90,26 +94,28 @@ function PhoneNumber(digit) {
 // for example, a tower of 3 floors looks like below
 
 // [
-//   '  *  ', 
-//   ' *** ', 
+//   '  *  ',
+//   ' *** ',
 //   '*****'
 // ]
 // and a tower of 6 floors looks like below
 
 // [
-//   '     *     ', 
-//   '    ***    ', 
-//   '   *****   ', 
-//   '  *******  ', 
-//   ' ********* ', 
+//   '     *     ',
+//   '    ***    ',
+//   '   *****   ',
+//   '  *******  ',
+//   ' ********* ',
 //   '***********'
 // ]
 
 function towerBuilder(nFloors) {
-  let tower = [], space, star;
+  let tower = [],
+    space,
+    star;
   for (let i = 1; i <= nFloors; i++) {
-    space = " ".repeat(nFloors -i);
-    star = "*".repeat((2*i) - 1);
+    space = " ".repeat(nFloors - i);
+    star = "*".repeat(2 * i - 1);
     tower.push(`${space}${star}${space}`);
   }
   return tower;
@@ -117,14 +123,14 @@ function towerBuilder(nFloors) {
 
 // console.log(towerBuilder(6));
 
-  // CODEWAR 4
+// CODEWAR 4
 
 //   In a small town the population is p0 = 1000 at the beginning of a year. The population regularly increases by 2 percent per year and moreover 50 new inhabitants per year come to live in the town. How many years does the town need to see its population greater or equal to p = 1200 inhabitants?
 
-// At the end of the first year there will be: 
+// At the end of the first year there will be:
 // 1000 + 1000 * 0.02 + 50 => 1070 inhabitants
 
-// At the end of the 2nd year there will be: 
+// At the end of the 2nd year there will be:
 // 1070 + 1070 * 0.02 + 50 => 1141 inhabitants (number of inhabitants is an integer)
 
 // At the end of the 3rd year there will be:
@@ -144,7 +150,7 @@ function towerBuilder(nFloors) {
 // nb_year(1500000, 2.5, 10000, 2000000) -> 10
 // Note: Don't forget to convert the percent parameter as a percentage in the body of your function: if the parameter percent is 2 you have to convert it to 0.02.
 
-  // CODEWAR 5
+// CODEWAR 5
 
 //   This time we want to write calculations using functions and get the results. Let's have a look at some examples'
 
@@ -161,14 +167,14 @@ function towerBuilder(nFloors) {
 
 // -----------------------------------------
 
-// First calculation function i wrote 
+// First calculation function i wrote
 
-// function zero(op) { 
+// function zero(op) {
 //   if(op) {return op(0)}
 //     return 0;
 // }
 
-// function one(op) { 
+// function one(op) {
 //   if(op) {return op(1)}
 //     return 1;
 // }
@@ -203,7 +209,7 @@ function towerBuilder(nFloors) {
 //     return 7;
 // }
 
-// function eight(op) { 
+// function eight(op) {
 //   if (op)
 //    return op(8)
 //   return 8;
@@ -216,9 +222,9 @@ function towerBuilder(nFloors) {
 
 // ========================================
 
-// Second calculation function I wrote 
+// Second calculation function I wrote
 
-var n = dig => op => op ? op(dig) : dig;
+var n = dig => op => (op ? op(dig) : dig);
 
 const zero = n(0);
 const one = n(1);
@@ -240,7 +246,7 @@ const dividedBy = val1 => val2 => val2 / val1;
 
 // // --=========-------=============--------======
 
-// // First Operation function I wrote 
+// // First Operation function I wrote
 
 // minus(val1) {
 //   return function(val2) {
@@ -260,7 +266,7 @@ const dividedBy = val1 => val2 => val2 / val1;
 //   }
 // }
 
-// // Test case 
+// // Test case
 // console.log(eleven(times(two())));
 // console.log(nine(plus(two())));
 // console.log(nine(minus(two())));
@@ -268,15 +274,18 @@ const dividedBy = val1 => val2 => val2 / val1;
 
 // ========================================================================
 
-  // CODEWAR 6 
-  
-  // TORTOISE RACE 
+// CODEWAR 6
 
-//   When she starts, at last, she can see that A has a 70 feet lead but B's speed is 850 feet per hour. How long will it take B to catch A?
+// TORTOISE RACE
 
-// More generally: given two speeds v1 (A's speed, integer > 0) and v2 (B's speed, integer > 0) and a lead g (integer > 0) how long will it take B to catch A?
+//   When she starts, at last, she can see that A has a 70 feet
+//   lead but B's speed is 850 feet per hour. How long will it take B to catch A?
 
-// The result will be an array [hour, min, sec] which is the time needed in hours, minutes and seconds (don't worry for fractions of second).
+// More generally: given two speeds v1 (A's speed, integer > 0)
+// and v2 (B's speed, integer > 0) and a lead g (integer > 0) how long will it take B to catch A?
+
+// The result will be an array [hour, min, sec] which is the time needed in hours,
+//  minutes and seconds (don't worry for fractions of second).
 
 // If v1 >= v2 then return nil, nothing, null, None or {-1, -1, -1} for C++, C, Go, Nim, [] for Kotlin.
 
@@ -285,26 +294,39 @@ const dividedBy = val1 => val2 => val2 / val1;
 // race(80, 91, 37)   => [3, 21, 49]
 // Note: you can see some other examples in "Your test cases".
 
-  // SOLUTION TO TORTOISE RACE (not solved)
+// SOLUTION TO TORTOISE RACE (not solved)
 
-  // speed is in per hour 
-  // v1 = 720, d1 = ?, 
-  // v2 = 850, d2, = ?, 
-  // v1 = d1 / t1, 
-  // var seconds;
-  // function race(v1, v2, g) {
-  //   const t1 = g / v1;
-  //   const time = getTime(v1, t1, v2);
-  //   seconds = time;
-  //   return seconds;
-  // }
+// speed is in per hour
+// v1 = 720, d1 = ?,
+// v2 = 850, d2, = ?,
+// v1 = d1 / t1,
+// var seconds;
+function race(v1, v2, g) {
+  const t1 = g / v1;
+  const t2 = (t1 * v1) / (v2 - v1);
+  console.log(t2);
+  return timeFormat(t2);
+}
 
-  // function getTime(v1, t1, v2) {
-  //   var t2 = (v2 * t1) / (v2 - v1);
-  //   return v2;
-  // }
+function timeFormat(t) {
+  let seconds = 60 * 60 * t;
+  console.log(seconds);
+  let secondsLeft = seconds;
+  let hours = seconds / 3600;
+  console.log(hours);
 
-  // console.log(race(720, 850, 70));
+  secondsLeft = secondsLeft % 3600;
+  let mins = Math.floor(secondsLeft / 60);
+  console.log(mins);
+
+  secondsLeft = secondsLeft % 60;
+  let secs = secondsLeft % 60;
+
+  return [Math.floor(hours), Math.floor(mins), Math.floor(secs)];
+}
+
+// console.log(race(720, 850, 70));
+// console.log(race(80, 91, 37));
 
 // ===================================================
 // ORDER WEIGHT
@@ -312,18 +334,21 @@ const dividedBy = val1 => val2 => val2 / val1;
 // var weight = "57 63 199 38 93 21";
 
 function orderWeight(string) {
-  return string.split(' ')
-    .map((v) => {
+  return string
+    .split(" ")
+    .map(v => {
       return {
         val: v,
-        key: v.split('').reduce((a, b) => {
+        key: v.split("").reduce((a, b) => {
           return parseInt(a) + parseInt(b);
         })
-      }
+      };
     })
-    .sort((a, b) => a.key == b.key ? a.val.localeCompare(b.val) : (a.key - b.key))
-    .map((a) => a.val)
-    .join(" ")
+    .sort((a, b) =>
+      a.key == b.key ? a.val.localeCompare(b.val) : a.key - b.key
+    )
+    .map(a => a.val)
+    .join(" ");
 }
 
 /*function orderWeight(strng) {
@@ -394,20 +419,27 @@ function orderWeight(string) {
 //   }
 // }
 
-// OR 
+// OR
 
 function getLengthOfMissingArray(arrayOfArrays) {
-  let arrayOfLength =  arrayOfArrays.length > 0 ? 
-    arrayOfArrays.sort((a, b) => { return a.length > b.length ? 1 : -1})
-    .map((a) => { return a.length; }) : 0;
+  let arrayOfLength =
+    arrayOfArrays.length > 0
+      ? arrayOfArrays
+          .sort((a, b) => {
+            return a.length > b.length ? 1 : -1;
+          })
+          .map(a => {
+            return a.length;
+          })
+      : 0;
 
-    for(let i = 0; i < arrayOfLength.length; i++) {
-      let first = arrayOfLength[i];
-      let diff = arrayOfLength[i + 1] - first;
-      if(diff != 1) {
-        return first + 1;
-      }
+  for (let i = 0; i < arrayOfLength.length; i++) {
+    let first = arrayOfLength[i];
+    let diff = arrayOfLength[i + 1] - first;
+    if (diff != 1) {
+      return first + 1;
     }
+  }
 }
 
 // console.log(getLengthOfMissingArray( [ [1, 4, 3, 9, 0], [ 4, 5, 1, 5], [ 1, 3, 4], [ 5, 6, 7, 8, 5, 4, 2]]));
@@ -416,7 +448,9 @@ function getLengthOfMissingArray(arrayOfArrays) {
 
 // STRING INCREMENTAL
 
-// Your job is to write a function which increments a string, to create a new string. If the string already ends with a number, the number should be incremented by 1. If the string does not end with a number the number 1 should be appended to the new string.
+// Your job is to write a function which increments a string, to create a new string.
+// If the string already ends with a number, the number should be incremented by 1.
+// If the string does not end with a number the number 1 should be appended to the new string.
 
 // Examples:
 
@@ -434,18 +468,17 @@ function getLengthOfMissingArray(arrayOfArrays) {
 
 //   let match, zeros, number, retNum;
 
-function incrementString (strng) {
+function incrementString(strng) {
   match = strng.match(/(\d+)$/);
   zeros = strng.match(/(0*)\d+?$/);
-  if(match === null) {
-    return strng+1;
+  if (match === null) {
+    return strng + 1;
   }
 
-   number = Number(match[0]) + 1;
+  number = Number(match[0]) + 1;
 
-  if(zeros[1].length > 1) {
-
-    retNum = zeros[1] + number;   
+  if (zeros[1].length > 1) {
+    retNum = zeros[1] + number;
   } else {
     retNum = number;
   }
@@ -453,49 +486,49 @@ function incrementString (strng) {
   return strng.replace(match[0], retNum);
 }
 
-// console.log(incrementString('foobar00999'));
+console.log(incrementString("foobar00999"));
 
 function num_to_word(N) {
- let array = String(N).split('');
- let result = '';
- for(let i = 0; i < array.length; i++) {
-   switch(array[i]) {
-     case '0':
-       result += " zero ";
-       break;
-     case '1':
-       result += " one";
-       break;
-     case "2":
-       result += " two";
-       break;
-     case '3':
-       result += " three";
-       break;
-     case '4':
-       result += " four";
-       break;
-     case '5':
-       result += " five";
-       break;
-     case '6':
-       result += " six";
-       break;
-     case '7':
-       result += " seven";
-       break;
-     case '8':
-       result += " eight";
-       break;
-     case '9':
-       result += " nine";
-       break;
-     default:
-       result += " unknown number";
-       break;
-   }
- }
- console.log( result );
+  let array = String(N).split("");
+  let result = "";
+  for (let i = 0; i < array.length; i++) {
+    switch (array[i]) {
+      case "0":
+        result += " zero ";
+        break;
+      case "1":
+        result += " one";
+        break;
+      case "2":
+        result += " two";
+        break;
+      case "3":
+        result += " three";
+        break;
+      case "4":
+        result += " four";
+        break;
+      case "5":
+        result += " five";
+        break;
+      case "6":
+        result += " six";
+        break;
+      case "7":
+        result += " seven";
+        break;
+      case "8":
+        result += " eight";
+        break;
+      case "9":
+        result += " nine";
+        break;
+      default:
+        result += " unknown number";
+        break;
+    }
+  }
+  console.log(result);
 }
 
 // num_to_word(234589250891);
@@ -505,17 +538,17 @@ function num_to_word(N) {
 // SUM OF DIGITS
 
 function sum_of_digits(A) {
- return A.map((v) => {
-   return String(v);
- })
- .map((v) => {
-   return v.split("").reduce((a, b) => {
-     return Number(a) + Number(b);
-   })
- })
- .reduce((a, b) => {
-   return Number(a) + Number(b);
- })
+  return A.map(v => {
+    return String(v);
+  })
+    .map(v => {
+      return v.split("").reduce((a, b) => {
+        return Number(a) + Number(b);
+      });
+    })
+    .reduce((a, b) => {
+      return Number(a) + Number(b);
+    });
 }
 
 // console.log(sum_of_digits([10, 20, 3, 5, 6, 23]));
@@ -533,16 +566,16 @@ function sortArray(array) {
   let originalArray = array.slice();
   let oddArray = [];
 
-  for(let i = 0; i < arr.length; i++) {
-    if(isOdd(arr[i])) {
+  for (let i = 0; i < arr.length; i++) {
+    if (isOdd(arr[i])) {
       oddArray.push(arr[i]);
     }
   }
 
-  oddArray = oddArray.sort((a, b) => a > b ? 1 : -1);
+  oddArray = oddArray.sort((a, b) => (a > b ? 1 : -1));
 
-  for(let i = 0; i < originalArray.length; i++) {
-    if(isOdd(originalArray[i])) {
+  for (let i = 0; i < originalArray.length; i++) {
+    if (isOdd(originalArray[i])) {
       let temp = Number(oddArray.splice(0, 1));
       originalArray[i] = temp;
     }
@@ -550,7 +583,6 @@ function sortArray(array) {
 
   return originalArray;
 }
-
 
 // console.log(sortArray([5, 3, 2, 8, 1, 4]))
 
@@ -599,8 +631,8 @@ function printerError(s) {
   const denominator = s.length;
   const printerDefault = /[a-m]/g;
   let error = 0;
-  for(c of s) {
-    if(!(c.match(printerDefault))) {
+  for (c of s) {
+    if (!c.match(printerDefault)) {
       error++;
     }
   }
@@ -612,7 +644,6 @@ function printerError(s) {
 
 // console.log(printerError(z));
 
-
 // ===============================================================================
 
 // COUNTING DUPLICATES
@@ -620,14 +651,14 @@ function printerError(s) {
 function duplicateCount(text) {
   let count = 0;
   let duplicates = [];
-  if(text.length <= 1) {
+  if (text.length <= 1) {
     return count;
   }
   text = text.toLowerCase();
 
-  for(let i = 0; i < text.length; i++) {
-    for(let j = 0; j < text.length; j++) {
-      if(j !== i && text[j] === text[i] && duplicates.indexOf(text[j]) == -1) {
+  for (let i = 0; i < text.length; i++) {
+    for (let j = 0; j < text.length; j++) {
+      if (j !== i && text[j] === text[i] && duplicates.indexOf(text[j]) == -1) {
         duplicates.push(text[j]);
         count++;
       }
@@ -639,23 +670,25 @@ function duplicateCount(text) {
 
 // console.log(duplicateCount("abcdefghabcdabcABAB"));
 
-
 // ===========================================================
 
-// PARTLIST 
+// PARTLIST
 
 function partlist(arr) {
   let oriArr = arr.slice();
   let newArr = [];
 
-  for(let i = 0; i < arr.length; i++) {
-    if(i == arr.length - 1) {
+  for (let i = 0; i < arr.length; i++) {
+    if (i == arr.length - 1) {
       return newArr;
     }
 
     let pivot = i;
     let j = 1;
-    let array = [oriArr.slice(0, pivot+1), oriArr.slice(pivot+1, 1).concat(oriArr.slice(pivot+2))];
+    let array = [
+      oriArr.slice(0, pivot + 1),
+      oriArr.slice(pivot + 1, 1).concat(oriArr.slice(pivot + 2))
+    ];
     newArr.push(array);
   }
   return newArr;
@@ -669,11 +702,11 @@ function partlist(arr) {
 
 function presses(phrase) {
   let count = 0;
-  for(let i = 0; i < phrase.length; i++) {
+  for (let i = 0; i < phrase.length; i++) {
     let letter = phrase[i].toUpperCase();
-    for(let key of buttons) {
-      if(key.alpha.indexOf(letter) >= 0) {
-        let press =  key.alpha.indexOf(letter) + 1;
+    for (let key of buttons) {
+      if (key.alpha.indexOf(letter) >= 0) {
+        let press = key.alpha.indexOf(letter) + 1;
         count += press;
       }
     }
@@ -683,16 +716,16 @@ function presses(phrase) {
 }
 
 const buttons = [
-  {num: 1, alpha: ["1"]},
-  {num: 2, alpha: ["A", "B", "C", "2"]},
-  {num: 3, alpha: ["D", "E", "F", "3"]},
-  {num: 4, alpha: ["G", "H", "I", "4"]},
-  {num: 5, alpha: ["J", "K", "L", "5"]},
-  {num: 6, alpha: ["M", "N", "O", "6"]},
-  {num: 7, alpha: ["P", "Q", "R", "S", "7"]},
-  {num: 8, alpha: ["T", "U", "V", "8"]},
-  {num: 9, alpha: ["W", "X", "Y", "Z", "9"]},
-  {num: 0, alpha: [" ", "0"]}
+  { num: 1, alpha: ["1"] },
+  { num: 2, alpha: ["A", "B", "C", "2"] },
+  { num: 3, alpha: ["D", "E", "F", "3"] },
+  { num: 4, alpha: ["G", "H", "I", "4"] },
+  { num: 5, alpha: ["J", "K", "L", "5"] },
+  { num: 6, alpha: ["M", "N", "O", "6"] },
+  { num: 7, alpha: ["P", "Q", "R", "S", "7"] },
+  { num: 8, alpha: ["T", "U", "V", "8"] },
+  { num: 9, alpha: ["W", "X", "Y", "Z", "9"] },
+  { num: 0, alpha: [" ", "0"] }
 ];
 
 // console.log(presses("WHERE DO U WANT 2 MEET L8R"));
@@ -703,15 +736,14 @@ const buttons = [
 
 function snail(array) {
   const result = [];
-  while(array.length) {
-    result = (result ? result.concat(array.shift()) : array.shift());
+  while (array.length) {
+    result = result ? result.concat(array.shift()) : array.shift();
 
-    for(let i = 0; i < array.length; i++) 
-      result.push(array[i].pop());
-    
+    for (let i = 0; i < array.length; i++) result.push(array[i].pop());
+
     result = result.push(array.pop().reverse());
 
-    for(let i = array.length -1; i >= 0; i--) {
+    for (let i = array.length - 1; i >= 0; i--) {
       result.push(array[i].shift());
     }
   }
@@ -723,14 +755,13 @@ function snail(array) {
 // let array = [[1,2,3, 1], [4, 5, 6, 4], [7, 8, 9, 7], [7, 8, 9, 7]];
 // console.log(snail(array));
 
-
-// STRIP COMMENTS 
+// STRIP COMMENTS
 // not solved
-function solution(input, markers){
+function solution(input, markers) {
   let marker = markers.join("");
   console.log(marker);
   let express = `[${marker}](.+)?|${marker}`;
-  let re =  new RegExp(express, "gi");
+  let re = new RegExp(express, "gi");
   let strippedInput = input.replace(re, "");
   console.log(strippedInput.length);
   return strippedInput;
@@ -738,18 +769,18 @@ function solution(input, markers){
 
 // console.log(solution("apples, pears # and bananas\ngrapes\nbananas !apples", ["#", "!"]));
 
-
 function generateHashtag(str) {
-  if(str == null || str.length < 1) return false;
+  if (str == null || str.length < 1) return false;
 
-    str = str.split(' ')
+  str = str
+    .split(" ")
     .filter(word => word != "")
     .map(word => word[0].toUpperCase() + word.slice(1))
-    .join('');
+    .join("");
 
-    let tag = '#' + str;
-    if(tag.length > 140) return false;
-    return tag;
+  let tag = "#" + str;
+  if (tag.length > 140) return false;
+  return tag;
 }
 
 // console.log(generateHashtag('Hello  there thanks for trying my Kata'));
@@ -761,11 +792,11 @@ function generateHashtag(str) {
 // console.log(str);
 
 // =============================================
-// humanReadable kata 
+// humanReadable kata
 
 function zeroPad(num) {
-  num = num + '';
-  if(num.length < 2) return '0'+ num;
+  num = num + "";
+  if (num.length < 2) return "0" + num;
   return num;
 }
 
@@ -774,8 +805,10 @@ function humanReadable(seconds) {
   let hours = zeroPad(Math.floor(seconds / 3600));
   secondsLeft = secondsLeft % 3600;
   let mins = zeroPad(Math.floor(secondsLeft / 60));
-  let secs  = zeroPad(secondsLeft % 60);
-  return `${hours.length < 2 ? '0'+ hours : hours}:${mins.length < 2 ? '0'+ mins : mins}:${secs.length < 2 ? '0'+ secs : secs}`;
+  let secs = zeroPad(secondsLeft % 60);
+  return `${hours.length < 2 ? "0" + hours : hours}:${
+    mins.length < 2 ? "0" + mins : mins
+  }:${secs.length < 2 ? "0" + secs : secs}`;
 }
 
 // console.log(humanReadable(4362346));
@@ -789,12 +822,12 @@ Math issuses
 */
 
 Math.round = function(number) {
-  if(number - ~~number >= 0.5) return 1 + ~~number;
+  if (number - ~~number >= 0.5) return 1 + ~~number;
   return ~~number;
 };
 
 Math.ceil = function(number) {
-  return (number - ~~number > 0) ? 1 + number : number;
+  return number - ~~number > 0 ? 1 + number : number;
 };
 
 Math.floor = function(number) {
@@ -802,82 +835,92 @@ Math.floor = function(number) {
 };
 
 // ============================================================
-// Tic-Tac-Toe checker 
-const board = [[0, 0, 2],
-               [0, 0, 0],
-               [1, 0, 1]]
+// Tic-Tac-Toe checker
+const board = [[0, 0, 2], [0, 0, 0], [1, 0, 1]];
 
 function isSolved(board) {
-
-  for(let i = 0; i <= 2; i++) {
-    
+  for (let i = 0; i <= 2; i++) {
     // check for vertically possible wins
-    if(board[0][i] === board[1][i] && board[0][i] === board[2][i] && board[0][i] !== 0) {
+    if (
+      board[0][i] === board[1][i] &&
+      board[0][i] === board[2][i] &&
+      board[0][i] !== 0
+    ) {
       return board[0][i];
     }
 
     // check for horizontal wins
-    if(board[i][0] === board[i][1] && board[i][0] === board[i][2] && board[i][0] !== 0) {
-     return board[i][0];
+    if (
+      board[i][0] === board[i][1] &&
+      board[i][0] === board[i][2] &&
+      board[i][0] !== 0
+    ) {
+      return board[i][0];
     }
 
-    // check for diagonal wins 
-    if(board[0][0] === board[1][1] && board[0][0] === board[2][2] && board[0][0] !== 0) {
-     return board[0][0];
+    // check for diagonal wins
+    if (
+      board[0][0] === board[1][1] &&
+      board[0][0] === board[2][2] &&
+      board[0][0] !== 0
+    ) {
+      return board[0][0];
     }
 
     // check for other diagonal
-    if(board[0][2] === board[1][1] && board[0][2] === board[2][0] && board[0][2] !== 0) {
+    if (
+      board[0][2] === board[1][1] &&
+      board[0][2] === board[2][0] &&
+      board[0][2] !== 0
+    ) {
       return board[0][2];
     }
-
   }
 
-   // check for empty slots in the board;
-  for(let i = 0; i <= 2; i++) {
-    for(let j = 0; j <= 2; j++) {
-      if(board[i][j] === 0) {
+  // check for empty slots in the board;
+  for (let i = 0; i <= 2; i++) {
+    for (let j = 0; j <= 2; j++) {
+      if (board[i][j] === 0) {
         return -1;
       }
     }
   }
 
   return 0;
-
 }
 
 // console.log(isSolved(
 //   [
 //     [0, 1, 1],
-//     [2, 0, 2], 
+//     [2, 0, 2],
 //     [2, 1, 0]
 //   ]
 // ));
 
 // =============================================================
 
- // CONVERT STRING TO CAMELCASE 
+// CONVERT STRING TO CAMELCASE
 
- function toCamelCase(str) {
-    // set matches to uppercase first
-    str = str.replace(/[-_](\w)/g, str => str.toUpperCase());
-      
-    // then replace dashes
-    str = str.replace(/([-_])/g, '');
+function toCamelCase(str) {
+  // set matches to uppercase first
+  str = str.replace(/[-_](\w)/g, str => str.toUpperCase());
 
-    return str;
- }
+  // then replace dashes
+  str = str.replace(/([-_])/g, "");
 
- // console.log(toCamelCase('the-stealth-warrior'));
+  return str;
+}
+
+// console.log(toCamelCase('the-stealth-warrior'));
 
 // ========================================================================================
 
- // simple fun #116: best match
+// simple fun #116: best match
 
 function bestMatch(ALAHLYGoals, zamalekGoals) {
   let matchDiff = [];
-  for(let i = 0; i < ALAHLYGoals.length; i++) {
-    matchDiff.push({ 
+  for (let i = 0; i < ALAHLYGoals.length; i++) {
+    matchDiff.push({
       i: ALAHLYGoals[i] - zamalekGoals[i],
       key: zamalekGoals[i],
       index: i
@@ -886,9 +929,14 @@ function bestMatch(ALAHLYGoals, zamalekGoals) {
   matchDiff.sort((a, b) => a.i - b.i);
   let bestMatch = matchDiff[0];
   matchDiff.forEach(match => {
-    if(!bestMatch) bestMatch = match;
-    if(match.i <= bestMatch.i && match.key > bestMatch.key) bestMatch = match; 
-    if(match.i === bestMatch.i && match.key === bestMatch.key && match.index < bestMatch.index) bestMatch = match;   
+    if (!bestMatch) bestMatch = match;
+    if (match.i <= bestMatch.i && match.key > bestMatch.key) bestMatch = match;
+    if (
+      match.i === bestMatch.i &&
+      match.key === bestMatch.key &&
+      match.index < bestMatch.index
+    )
+      bestMatch = match;
   });
   return bestMatch.index;
 }
@@ -905,16 +953,25 @@ function phones(strng, num) {
     let exactPhoneRegExp = new RegExp(`${num}`, "g");
     let nameRegExp = /\<(\s?\D+\s?\D{0,}\s?)\>/g;
     let phoneRegExp = /\+?(\d{1,2}-\d{3}-\d{3}-\d{4}).?/g;
-    let retString = '';
+    let retString = "";
     let phoneArr = [];
     let nameArr = [];
     let addressArr = [];
 
-    for(let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
       let item = arr[i];
-      
-      if(item.match(nameRegExp) && item.match(exactPhoneRegExp)) {
-        let [name, number] = [item.match(nameRegExp)[0].replace(/[<?\>?]/g, "").trim(), item.match(exactPhoneRegExp)[0].replace(/\+?/, "").trim()];
+
+      if (item.match(nameRegExp) && item.match(exactPhoneRegExp)) {
+        let [name, number] = [
+          item
+            .match(nameRegExp)[0]
+            .replace(/[<?\>?]/g, "")
+            .trim(),
+          item
+            .match(exactPhoneRegExp)[0]
+            .replace(/\+?/, "")
+            .trim()
+        ];
         nameArr.push(name);
         phoneArr.push(number);
         item = item.replace(name, "");
@@ -924,35 +981,39 @@ function phones(strng, num) {
       }
     }
 
-    if(!phoneArr.find(p => phoneRegExp.test(p))) return `Error => Not found: ${num}`;
-    if(phoneArr.length > 1) return `Error => Too many people: ${num}`;
+    if (!phoneArr.find(p => phoneRegExp.test(p)))
+      return `Error => Not found: ${num}`;
+    if (phoneArr.length > 1) return `Error => Too many people: ${num}`;
 
     retString += `Phone => ${phoneArr[0]}, `;
     retString += `Name => ${nameArr[0]}, `;
-    retString += `Address => ${addressArr[0]}`.replace(/\_/g, "").replace(/\s{1,}/g, ' ');
+    retString += `Address => ${addressArr[0]}`
+      .replace(/\_/g, "")
+      .replace(/\s{1,}/g, " ");
 
     return retString;
   });
 }
 
-const dr = "/+1-541-754-3010 156 Alphand_St. <J Steeve>\n 133, Green, Rd. <E Kustur> NY-56423 ;+1-541-914-3010\n"
-+ "+1-541-984-3012 <P Reed> /PO Box 530; Pollocksville, NC-28573\n :+1-321-512-2222 <Paul Dive> Sequoia Alley PQ-67209\n"
-+ "+1-741-984-3090 <Peter Reedgrave> _Chicago\n :+1-921-333-2222 <Anna Stevens> Haramburu_Street AA-67209\n"
-+ "+1-111-544-8973 <Peter Pan> LA\n +1-921-512-2222 <Wilfrid Stevens> Wild Street AA-67209\n"
-+ "<Peter Gone> LA ?+1-121-544-8974 \n <R Steell> Quora Street AB-47209 +1-481-512-2222\n"
-+ "<Arthur Clarke> San Antonio $+1-121-504-8974 TT-45120\n <Ray Chandler> Teliman Pk. !+1-681-512-2222! AB-47209,\n"
-+ "<Sophia Loren> +1-421-674-8974 Bern TP-46017\n <Peter O'Brien> High Street +1-908-512-2222; CC-47209\n"
-+ "<Anastasia> +48-421-674-8974 Via Quirinal Roma\n <P Salinger> Main Street, +1-098-512-2222, Denver\n"
-+ "<C Powel> *+19-421-674-8974 Chateau des Fosses Strasbourg F-68000\n <Bernard Deltheil> +1-498-512-2222; Mount Av.  Eldorado\n"
-+ "+1-099-500-8000 <Peter Crush> Labrador Bd.\n +1-931-512-4855 <William Saurin> Bison Street CQ-23071\n"
-+ "<P Salinge> Main Street, +1-098-512-2222, Denve";
+const dr =
+  "/+1-541-754-3010 156 Alphand_St. <J Steeve>\n 133, Green, Rd. <E Kustur> NY-56423 ;+1-541-914-3010\n" +
+  "+1-541-984-3012 <P Reed> /PO Box 530; Pollocksville, NC-28573\n :+1-321-512-2222 <Paul Dive> Sequoia Alley PQ-67209\n" +
+  "+1-741-984-3090 <Peter Reedgrave> _Chicago\n :+1-921-333-2222 <Anna Stevens> Haramburu_Street AA-67209\n" +
+  "+1-111-544-8973 <Peter Pan> LA\n +1-921-512-2222 <Wilfrid Stevens> Wild Street AA-67209\n" +
+  "<Peter Gone> LA ?+1-121-544-8974 \n <R Steell> Quora Street AB-47209 +1-481-512-2222\n" +
+  "<Arthur Clarke> San Antonio $+1-121-504-8974 TT-45120\n <Ray Chandler> Teliman Pk. !+1-681-512-2222! AB-47209,\n" +
+  "<Sophia Loren> +1-421-674-8974 Bern TP-46017\n <Peter O'Brien> High Street +1-908-512-2222; CC-47209\n" +
+  "<Anastasia> +48-421-674-8974 Via Quirinal Roma\n <P Salinger> Main Street, +1-098-512-2222, Denver\n" +
+  "<C Powel> *+19-421-674-8974 Chateau des Fosses Strasbourg F-68000\n <Bernard Deltheil> +1-498-512-2222; Mount Av.  Eldorado\n" +
+  "+1-099-500-8000 <Peter Crush> Labrador Bd.\n +1-931-512-4855 <William Saurin> Bison Street CQ-23071\n" +
+  "<P Salinge> Main Street, +1-098-512-2222, Denve";
 
-  // dr.split(/\n/g).forEach(person => {
-  //   let phoneRegExp = /\+?(\d{1,2}-\d{3}-\d{3}-\d{4}).?/g;
-  //   let phone = person.match(phoneRegExp);
-  //   phone = phone[0].replace(/[!+;,.]/g, "").trim();
-  //   console.log(phones(dr, phone));
-  // });
+// dr.split(/\n/g).forEach(person => {
+//   let phoneRegExp = /\+?(\d{1,2}-\d{3}-\d{3}-\d{4}).?/g;
+//   let phone = person.match(phoneRegExp);
+//   phone = phone[0].replace(/[!+;,.]/g, "").trim();
+//   console.log(phones(dr, phone));
+// });
 
 // console.log(phone(dr, "48-421-674-8974"))
 
@@ -977,8 +1038,8 @@ const dr = "/+1-541-754-3010 156 Alphand_St. <J Steeve>\n 133, Green, Rd. <E Kus
 //           item = item.replace(number, "");
 //           addressArr.push(item.replace(/\+?\<?\>?\s?\W/g, ""));
 //           console.log(nameArr, phoneArr, addressArr);
-          
-//         } 
+
+//         }
 //       }
 
 // =========================================================================================================================
@@ -986,18 +1047,20 @@ const dr = "/+1-541-754-3010 156 Alphand_St. <J Steeve>\n 133, Green, Rd. <E Kus
 // BASE CONVERSION ALGORITHM
 
 /*
-  In this kata you have to implement a base converter, which converts positive integers between arbitrary bases / alphabets. Here are some pre-defined alphabets:
+  In this kata you have to implement a base converter,
+   which converts positive integers between arbitrary bases / alphabets. Here are some pre-defined alphabets:
 */
 
 var Alphabet = {
-  BINARY:        '01',
-  OCTAL:         '01234567',
-  DECIMAL:       '0123456789',
-  HEXA_DECIMAL:  '0123456789abcdef',
-  ALPHA_LOWER:   'abcdefghijklmnopqrstuvwxyz',
-  ALPHA_UPPER:   'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-  ALPHA:         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-  ALPHA_NUMERIC: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  BINARY: "01",
+  OCTAL: "01234567",
+  DECIMAL: "0123456789",
+  HEXA_DECIMAL: "0123456789abcdef",
+  ALPHA_LOWER: "abcdefghijklmnopqrstuvwxyz",
+  ALPHA_UPPER: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  ALPHA: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  ALPHA_NUMERIC:
+    "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 };
 
 const bin = Alphabet.BINARY;
@@ -1019,11 +1082,10 @@ const toAllup = convertToBase(25);
 const toAlpha_num = convertToBase(61);
 
 function baseConverter(target) {
-   if(target == dec) return toDec;
-   let base = target.length;
+  if (target == dec) return toDec;
+  let base = target.length;
   return convertToBase(base);
 }
-
 
 function convertToBase(base) {
   var convert = [];
@@ -1031,68 +1093,65 @@ function convertToBase(base) {
     var num = Number(number);
     convert.unshift(num % base);
     num = Math.floor(num / base);
-    if(num <= 0) {
-      try { 
+    if (num <= 0) {
+      try {
         return convert;
       } finally {
         convert = [];
       }
-    } 
-    return convertTo(num); 
-  }
+    }
+    return convertTo(num);
+  };
 }
 
 // takes in an array of numbers to convert to DECIMAL;
 function toBase10(number, base) {
   let convert = 0;
   let num = number;
-  if(typeof num === 'string') {
-    num = num.split('');
+  if (typeof num === "string") {
+    num = num.split("");
   }
-  if(num.length <= 0) return convert;
-  for(let i = num.length - 1; i >= 0; i--) {
-    convert += (Number(num.shift()) * Math.pow(base, i));
+  if (num.length <= 0) return convert;
+  for (let i = num.length - 1; i >= 0; i--) {
+    convert += Number(num.shift()) * Math.pow(base, i);
   }
-  return convert + '';
+  return convert + "";
 }
 
-
 function displayOutput(output, base) {
-  if(typeof output == "object") {
+  if (typeof output == "object") {
     output = output.map(val => base[val]);
   } else {
     output = base[output];
   }
-  return output.join('');
+  return output.join("");
 }
 
 function getSourceInput(input, base) {
-  return input = input.split('')
-    .map(val => base.indexOf(val));
+  return (input = input.split("").map(val => base.indexOf(val)));
 }
 
 function convert(input, source, target) {
-  if(source == target) return input;
+  if (source == target) return input;
   let toConvert = input;
   let convertedInput;
 
-
-  let targetConverter = baseConverter(target); 
+  let targetConverter = baseConverter(target);
 
   // Handle binary source
-  if(source == bin) {
+  if (source == bin) {
     toConvert = toDec(toConvert, 2);
-    if(target == dec) {
+    if (target == dec) {
       return toConvert;
     } else {
       convertedInput = targetConverter(toConvert);
-      return displayOutput(convertedInput, target);  
+      return displayOutput(convertedInput, target);
     }
   }
 
-  if(source == oct) {
+  if (source == oct) {
     toConvert = toDec(toConvert, 8);
-    if(target == dec) return toConvert;
+    if (target == dec) return toConvert;
     convertedInput = targetConverter(toConvert);
     return displayOutput(convertedInput, target);
   }
@@ -1106,7 +1165,7 @@ function convert(input, source, target) {
 }
 
 // ============================================================================================
-    // CLOSET AND SMALLEST 
+// CLOSET AND SMALLEST
 /*
 Input
 
@@ -1148,94 +1207,93 @@ var strng = "103 123 4444 99 2000"
 // console.log(closest(strng1));
 */
 
-
 function closest(strng) {
-  if(strng.length > 0 && strng.length < 2) return [];
+  if (strng.length > 0 && strng.length < 2) return [];
   console.log(strng);
-  const strngArray = strng.split(' ');
+  const strngArray = strng.split(" ");
   let diff = -1;
   let retArray = [];
   let retArrayPrev, retArrayNext;
-  strng = strng.split(' ')
-  	.map((num, idx) => {
-  		return {
-  			weight: addString(num),
-  			index: idx,
-  			num: num
-  		}
-  	})
-  	.sort((a, b) => a.weight - b.weight)
+  strng = strng
+    .split(" ")
+    .map((num, idx) => {
+      return {
+        weight: addString(num),
+        index: idx,
+        num: num
+      };
+    })
+    .sort((a, b) => a.weight - b.weight);
   console.log(strng);
-  for(let idx in strng) {
-  	idx = Number(idx);
-  	if(idx === strng.length -1) break;
-  	let prev = strng[idx];
-  	let next = strng[idx+1];
-  	console.log(prev, next);
-  	if(diff < 0) {
-  		diff = next.weight - prev.weight;
-  		retArrayPrev = prev;
-  		retArrayNext = next;
-  		retArray = [
-  			[prev.weight, prev.index, prev.num], 
-  			[next.weight, next.index, next.num]
-  		];
-  	} else {
-	  		let currDiff = next.weight - prev.weight;
-	  		console.log('current diff is:', currDiff);
-	  		if(currDiff < diff) {
-	  			console.log('lesser')
-	  			retArray = [
-	  				[prev.weight, prev.index, prev.num], 
-	  				[next.weight, next.index, next.num]
-	  			];
-	  			retArrayPrev = prev;
-	  			retArrayNext = next;
-  			} else if((currDiff === 0) || (currDiff === diff)) {
-	  			console.log('zero or lesser');
-	  			if((prev.index < retArrayPrev.index) || (next.index < retArrayNext.index)) {
-	  				retArray = [
-	  					[prev.weight, prev.index, prev.num],
-	  					[next.weight, next.index, next.num]
-	  				];
-	  				retArrayPrev = prev;
-	  				retArrayNext = next;
-	  				continue;
-	  			}
-	  		}	
-  		}
-		}
+  for (let idx in strng) {
+    idx = Number(idx);
+    if (idx === strng.length - 1) break;
+    let prev = strng[idx];
+    let next = strng[idx + 1];
+    console.log(prev, next);
+    if (diff < 0) {
+      diff = next.weight - prev.weight;
+      retArrayPrev = prev;
+      retArrayNext = next;
+      retArray = [
+        [prev.weight, prev.index, prev.num],
+        [next.weight, next.index, next.num]
+      ];
+    } else {
+      let currDiff = next.weight - prev.weight;
+      console.log("current diff is:", currDiff);
+      if (currDiff < diff) {
+        console.log("lesser");
+        retArray = [
+          [prev.weight, prev.index, prev.num],
+          [next.weight, next.index, next.num]
+        ];
+        retArrayPrev = prev;
+        retArrayNext = next;
+      } else if (currDiff === 0 || currDiff === diff) {
+        console.log("zero or lesser");
+        if (
+          prev.index < retArrayPrev.index ||
+          next.index < retArrayNext.index
+        ) {
+          retArray = [
+            [prev.weight, prev.index, prev.num],
+            [next.weight, next.index, next.num]
+          ];
+          retArrayPrev = prev;
+          retArrayNext = next;
+          continue;
+        }
+      }
+    }
+  }
   return retArray;
 }
- 
+
 // Helper function to addup string of numbers
 function addString(strng) {
-	return strng.split('')
-	.reduce((a, b) => Number(a) + Number(b), 0);
+  return strng.split("").reduce((a, b) => Number(a) + Number(b), 0);
 }
-
 
 // else if((currDiff === diff) && ( (prev.index < retArray[0][1]) || (next.index < retArray[1][1]) )) {
 // 	  			if(prev.weight < retArrayPrev.weight || next.weight < retArrayNext.weight){
 // 	  				retArray = [
-// 	  					[prev.weight, prev.index, prev.num], 
+// 	  					[prev.weight, prev.index, prev.num],
 // 	  					[next.weight, next.index, next.num]
 // 	  				];
 // 	  			}
 // 	  			console.log('equals, parse index')
 // 	  		}
 
-
-
 // Test for closet;
 const strng1 = "103 123 4444 99 2000";
 const strng2 = "80 71 62 53";
 const strng3 = "444 2000 445 544";
-const strng4 = "444 2000 445 644 2001 1002" //closest("444 2000 445 644 2001 1002") --> [[3, 4, 2001], [3, 5, 1002]]
+const strng4 = "444 2000 445 644 2001 1002"; //closest("444 2000 445 644 2001 1002") --> [[3, 4, 2001], [3, 5, 1002]]
 const strng5 = "239382 162 254765 182 485944 468751 49780 108 54"; // [[9, 1, 162], [9, 7, 108]]
 const strng6 = "54 239382 162 254765 182 485944 468751 49780 108";
-const strng7 = "239382 162 254765 182 485944 134 468751 62 49780 108 54"
-console.log(closest("315411 165 53195 87 318638 107 416122 121 375312 193 59"));
+const strng7 = "239382 162 254765 182 485944 134 468751 62 49780 108 54";
+// console.log(closest("315411 165 53195 87 318638 107 416122 121 375312 193 59"));
 
 /*
 ===================================================================================================================
@@ -1279,40 +1337,39 @@ Test.describe('Anagram', function() {
 */
 
 // =====================================================================
-// SIMPLE EVENTS 
+// SIMPLE EVENTS
 
-
-// Es5 solution 
-function Event() {
+// Es5 solution
+function Es5Event() {
   this.handlers = [];
 
-  this.subscribe = (fn) => {
-    if(!~this.handlers.indexOf(fn)) {
-      if(typeof fn === "function") this.handlers.push(fn)
-      else throw(`Error: cannot susbscribe ${fn}: not a function`);
+  this.subscribe = fn => {
+    if (!~this.handlers.indexOf(fn)) {
+      if (typeof fn === "function") this.handlers.push(fn);
+      else throw `Error: cannot susbscribe ${fn}: not a function`;
     }
     return this;
-  }
+  };
 
-  this.unsubscribe = (fn) => {
-    if(this.handlers.includes(fn)) {
+  this.unsubscribe = fn => {
+    if (this.handlers.includes(fn)) {
       let fnIndex = this.handlers.indexOf(fn);
       unsubscribedFn = this.handlers.splice(fnIndex, 1);
       return this;
     }
-    throw(`Error: ${fn} has not been subscribed`);
-  }
+    throw `Error: ${fn} has not been subscribed`;
+  };
 
   this.emit = (...args) => {
-    if(this.handlers.length > 0) {
+    if (this.handlers.length > 0) {
       this.handlers.forEach(handler => handler(...args));
       return this;
     }
-  }
+  };
 }
 
-// Es6 solution 
-class Event() {
+// Es6 solution
+class Event {
   constructor() {
     this.subscribers = new Set();
   }
@@ -1330,24 +1387,20 @@ class Event() {
   }
 }
 
-
-
 // ============================================================================================
 
-// ADVANCED EVENTS --> SOLVED 
+// ADVANCED EVENTS --> SOLVED
 
-
-// Es6 implementation 
-class Event {
+// Es6 implementation
+class AdvancedEvent {
   constructor() {
     this.handlers = [];
-
   }
 
   subscribe(...fns) {
     console.log(this);
-    for(let i = 0; i < arguments.length; i++) {
-      if(typeof arguments[i] === 'function') {
+    for (let i = 0; i < arguments.length; i++) {
+      if (typeof arguments[i] === "function") {
         this.handlers.push(arguments[i]);
       }
     }
@@ -1356,19 +1409,18 @@ class Event {
 
   unsubscribe(...fns) {
     console.log(arguments);
-    for(let i = 0; i < arguments.length; i++) {
+    for (let i = 0; i < arguments.length; i++) {
       let fnIndex = this.handlers.lastIndexOf(arguments[i]);
-      if(fnIndex) this.handlers.splice(fnIndex, 1);
+      if (fnIndex) this.handlers.splice(fnIndex, 1);
     }
     return this;
   }
 
   emit(...args) {
     console.log(args);
-    for(let i = 0; i < this.handlers.length; i++) {
+    for (let i = 0; i < this.handlers.length; i++) {
       this.handlers[i].call(this, args);
     }
     return this;
   }
-
 }

@@ -1,10 +1,8 @@
 // Numbers that are a power of their sum of digits
 
 function isSumDig(dig) {
-  let num = (''+dig)
-  	.split('')
-  	.reduce((a, b) => Number(a) + Number(b), 0);
-  let pow = (''+dig).length;
+  let num = ("" + dig).split("").reduce((a, b) => Number(a) + Number(b), 0);
+  let pow = ("" + dig).length;
   const result = Math.pow(num, pow);
   return dig == result;
 }
@@ -12,19 +10,20 @@ function isSumDig(dig) {
 function power_SumDigTerm(n) {
   const power = n;
   const sumDig = [];
-  for(let i = 80; i; i++) {
-    if(isSumDig(i)) sumDig.push(i);
-    if(sumDig.length == n) return sumDig.pop();
+  for (let i = 80; i < 1000; i++) {
+    if (isSumDig(i)) sumDig.push(i);
+    if (sumDig.length == n) return sumDig.pop();
   }
 }
 
-// console.log(power_SumDigTerm(2));
-
+console.log(power_SumDigTerm(2));
 
 // ======================================================================
 // MOLECULE TO ATOMS
 /*
-For a given chemical formula represented by a string, count the number of atoms of each element contained in the molecule and return an object (associative array in PHP, Dictionary<string, int> in C#, Map in Java).
+  For a given chemical formula represented by a string, count the number of atoms 
+  of each element contained in the molecule and return an object (associative array in PHP, 
+  Dictionary<string, int> in C#, Map in Java).
 
 For example:
 
@@ -43,11 +42,40 @@ Note that brackets may be round, square or curly and can also be nested. Index a
 
 function parseMolecule(formula) {
   // perform your science here
+  const molecules = {};
+
+  // format formula without mutating to get individual molecules
+  formula.split(/[\[\]\(\)\d+]/g).forEach(v => {
+    if (v !== "undefined" && v !== "") molecules[v] = 1;
+  });
+
+  let pos = 0;
+  let prevToken = "";
+  let token;
+  while (pos < formula.length) {
+    let token = formula[pos];
+    if (isAlpha(token)) console.log({ token });
+    if (prevToken) console.log({ prevToken });
+    pos++;
+    prevToken = token;
+  }
+  return molecules;
 }
 
-/*
-// TEST CASE
+const isAlpha = str => /[A-z]/.test(str);
 
+const isDig = num => /[0-9]/.match(Number(num));
+
+// TEST CASE
+var water = "H2O";
+// console.log(parseMolecule(water));
+
+var fremySalt = "K4[ON(SO3)2]2";
+// console.log(parseMolecule(fremySalt));
+
+var magnesiumHydroxide = "Mg(OH)2";
+// console.log(parseMolecule(magnesiumHydroxide));
+/*
 // helper function, compares objects insensitive to field order
 function equalsAtomically(obj1, obj2) {
     if (Object.keys(obj1).length == Object.keys(obj2).length) {
